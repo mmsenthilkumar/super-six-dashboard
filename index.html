@@ -64,7 +64,7 @@
   .progress-meta{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; font-size:.68rem; font-weight:700; }
   .progress-meta .pct{ color:var(--gold); }
   .bar{ height:5px; border-radius:99px; background:var(--bar-track); overflow:hidden; margin-top:3px; }
-  .bar > div{ height:100%; border-radius:99px; background:var(--gold); width:14.1%; }
+  .bar > div{ height:100%; border-radius:99px; background:var(--gold); width:14.2%; }
   .progress-note{ color:var(--muted); font-size:.64rem; margin-top:3px; font-weight:600; }
   .stat-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-top:6px; }
   .stat{ background:var(--surface2); border:1px solid #cbd6e3; border-radius:6px; padding:4px 6px 4px; min-width:0; }
@@ -389,14 +389,14 @@
 
     <div class="progress-block">
       <div class="progress-meta">
-        <span>Combined <span class="mono">$140,807</span><span class="info-wrap flip-l"><button type="button" class="info-btn" aria-expanded="false" aria-label="About the combined value">i</button><span class="info-pop" hidden>USD 859,193 still to go to the USD 1,000,000 target. Combined across both brokers below, as read from the sheet on 18 Nov 2026.</span></span></span>
-        <span class="pct mono">14.1% of $1M</span>
+        <span>Combined <span class="mono">$141,612</span><span class="info-wrap flip-l"><button type="button" class="info-btn" aria-expanded="false" aria-label="About the combined value">i</button><span class="info-pop" hidden>USD 858,388 still to go to the USD 1,000,000 target. Combined across both brokers below, as read from the sheet on 19 Nov 2026.</span></span></span>
+        <span class="pct mono">14.2% of $1M</span>
       </div>
-      <div class="bar" role="img" aria-label="Progress to one million dollars: 14.1 percent"><div></div></div>
+      <div class="bar" role="img" aria-label="Progress to one million dollars: 14.2 percent"><div></div></div>
     </div>
 
-    <div class="milestone-graph" aria-label="Milestone straight line graph: passed 100 thousand, now at 141 thousand, next targets 250 thousand, 500 thousand and 1 million by December 2034">
-      <div class="mg-head"><span>Milestones → $1M</span><span class="now mono">Now $141k · 14.1%</span></div>
+    <div class="milestone-graph" aria-label="Milestone straight line graph: passed 100 thousand, now at 142 thousand, next targets 250 thousand, 500 thousand and 1 million by December 2034">
+      <div class="mg-head"><span>Milestones → $1M</span><span class="now mono">Now $142k · 14.2%</span></div>
       <div class="mg-chart-wrap">
       <svg class="mg-chart" viewBox="0 0 320 30" preserveAspectRatio="none" aria-hidden="true">
         <line x1="8" y1="15" x2="312" y2="15" stroke="#c2d6d1" stroke-width="1"/>
@@ -410,7 +410,7 @@
       <span class="mg-marker" style="left:72.5%" aria-hidden="true"></span>
       <span class="mg-marker final" style="left:97.5%" aria-hidden="true"></span>
       </div>
-      <div class="mg-labels"><span>$0</span><span class="done">$100k ✓</span><span class="now-lbl">$141k now</span><span>$250k</span><span>$500k</span><span><b>$1M</b> ’34</span></div>
+      <div class="mg-labels"><span>$0</span><span class="done">$100k ✓</span><span class="now-lbl">$142k now</span><span>$250k</span><span>$500k</span><span><b>$1M</b> ’34</span></div>
     </div>
   </header>
 
@@ -427,9 +427,9 @@
   <section class="combined-block" id="sec-combined" aria-label="Combined totals for both brokers">
     <div class="combined-head"><span class="broker-tag tag-both">Both brokers</span><span class="combined-sub">Combined totals · Tiger + IBKR</span></div>
     <div class="stat-grid" aria-label="Combined totals in a single line">
-      <div class="stat"><div class="k">Combined value</div><div class="v mono">$140,807</div><div class="mini-bar" aria-hidden="true"><span style="width:14.1%;background:var(--gold)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:30%;background:var(--gold);opacity:.45"></i><i style="height:50%;background:var(--gold);opacity:.65"></i><i style="height:72%;background:var(--gold);opacity:.85"></i><i style="height:100%;background:var(--gold)"></i></div><span class="g-lbl">14.1% of $1M</span><div class="s">Tiger $127,235 · IBKR $13,572</div></div>
+      <div class="stat"><div class="k">Combined value</div><div class="v mono">$141,612</div><div class="mini-bar" aria-hidden="true"><span style="width:14.2%;background:var(--gold)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:30%;background:var(--gold);opacity:.45"></i><i style="height:50%;background:var(--gold);opacity:.65"></i><i style="height:72%;background:var(--gold);opacity:.85"></i><i style="height:100%;background:var(--gold)"></i></div><span class="g-lbl">14.2% of $1M</span><div class="s">Tiger $127,933 · IBKR $13,678</div></div>
       <div class="stat"><div class="k">Total invested</div><div class="v mono">$104,341</div><div class="mini-bar" aria-hidden="true"><span style="width:74%;background:var(--tiger)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:45%;background:var(--tiger);opacity:.5"></i><i style="height:60%;background:var(--tiger);opacity:.65"></i><i style="height:80%;background:var(--tiger);opacity:.85"></i><i style="height:100%;background:var(--tiger)"></i></div><span class="g-lbl">74% of value</span><div class="s">Tiger $97,475 · IBKR $6,866</div></div>
-      <div class="stat"><div class="k">Unrealised P/L</div><div class="v mono pos">+$11,858</div><div class="mini-bar" aria-hidden="true"><span style="width:46%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:35%;background:var(--green);opacity:.5"></i><i style="height:55%;background:var(--green);opacity:.65"></i><i style="height:75%;background:var(--green);opacity:.85"></i><i style="height:92%;background:var(--green)"></i></div><span class="g-lbl pos">+11.4% on invested</span><div class="s">Tiger <span class="pos">+$12,203</span> · IBKR <span class="neg">−$345</span></div></div>
+      <div class="stat"><div class="k">Unrealised P/L</div><div class="v mono pos">+$12,663</div><div class="mini-bar" aria-hidden="true"><span style="width:46%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:35%;background:var(--green);opacity:.5"></i><i style="height:55%;background:var(--green);opacity:.65"></i><i style="height:75%;background:var(--green);opacity:.85"></i><i style="height:92%;background:var(--green)"></i></div><span class="g-lbl pos">+12.1% on invested</span><div class="s">Tiger <span class="pos">+$12,901</span> · IBKR <span class="neg">−$238</span></div></div>
       <div class="stat"><div class="k">Realised P/L</div><div class="v mono pos">+$14,250</div><div class="mini-bar" aria-hidden="true"><span style="width:54%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:40%;background:var(--green);opacity:.5"></i><i style="height:62%;background:var(--green);opacity:.65"></i><i style="height:82%;background:var(--green);opacity:.85"></i><i style="height:100%;background:var(--green)"></i></div><span class="g-lbl pos">+13.7% on invested</span><div class="s">All from Tiger so far</div></div>
     </div>
   </section>
@@ -441,7 +441,7 @@
     
     <div class="broker-head">
       <div>
-        <span class="broker-tag tag-tiger" id="h-tiger">Tiger — US Markets (USD)</span><span class="info-wrap flip-l"><button type="button" class="info-btn" aria-expanded="false" aria-label="About the Tiger list">i</button><span class="info-pop" hidden>66 tickers listed, 56 currently held and 10 closed / zero-share positions, kept for their realised P/L. All amounts in USD.</span></span>
+        <span class="broker-tag tag-tiger" id="h-tiger">Tiger — US Markets (USD)</span><span class="info-wrap flip-l"><button type="button" class="info-btn" aria-expanded="false" aria-label="About the Tiger list">i</button><span class="info-pop" hidden>67 tickers listed, 57 currently held and 10 closed / zero-share positions, kept for their realised P/L. All amounts in USD.</span></span>
       </div>
       <button type="button" class="broker-logo broker-logo-tiger details-toggle" data-target="holdings-tiger" aria-expanded="true" aria-controls="holdings-tiger" aria-label="Hide Tiger stocks" title="Tiger Brokers — show / hide stocks"><span class="broker-logo-icon"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false"><rect width="48" height="48" rx="10" fill="#ff7300"/><circle cx="13" cy="13" r="6" fill="#ffe1b8"/><circle cx="35" cy="13" r="6" fill="#ffe1b8"/><circle cx="13" cy="13" r="3" fill="#c2410c"/><circle cx="35" cy="13" r="3" fill="#c2410c"/><ellipse cx="24" cy="27" rx="15" ry="13" fill="#ffe1b8"/><path d="M24 16v6M17.5 17.5l2 5M30.5 17.5l-2 5" stroke="#1c1917" stroke-width="2.2" stroke-linecap="round" fill="none"/><path d="M11 24l5 1.6M11 30.5l5-1M37 24l-5 1.6M37 30.5l-5-1" stroke="#1c1917" stroke-width="1.6" stroke-linecap="round" fill="none"/><circle cx="18.5" cy="27" r="1.9" fill="#1c1917"/><circle cx="29.5" cy="27" r="1.9" fill="#1c1917"/><ellipse cx="24" cy="33.5" rx="5.5" ry="3.6" fill="#ffffff"/><path d="M21.8 32h4.4l-2.2 2.4z" fill="#1c1917"/></svg><span class="broker-chevron-badge" aria-hidden="true"><svg viewBox="0 0 12 12" focusable="false"><path d="M2.5 4.2 L6 7.8 L9.5 4.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></span></button>
     </div>
@@ -474,25 +474,27 @@
       </div>
     <div class="stat-grid broker-stats" aria-label="Tiger summary in a single line">
       <div class="stat"><div class="k">Invested</div><div class="v mono">$97,475</div><div class="mini-bar" aria-hidden="true"><span style="width:77%;background:var(--tiger)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:45%;background:var(--tiger);opacity:.5"></i><i style="height:60%;background:var(--tiger);opacity:.65"></i><i style="height:80%;background:var(--tiger);opacity:.85"></i><i style="height:100%;background:var(--tiger)"></i></div><span class="g-lbl">96.7% of contributed</span><div class="s">Total contributed $100,782.50</div></div>
-      <div class="stat"><div class="k">Unrealised</div><div class="v mono pos">+$12,203</div><div class="mini-bar" aria-hidden="true"><span style="width:48%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:35%;background:var(--green);opacity:.5"></i><i style="height:55%;background:var(--green);opacity:.65"></i><i style="height:75%;background:var(--green);opacity:.85"></i><i style="height:92%;background:var(--green)"></i></div><span class="g-lbl pos">+12.11% of contributed</span><div class="s pos">+12.11% of total contributed</div></div>
+      <div class="stat"><div class="k">Unrealised</div><div class="v mono pos">+$12,901</div><div class="mini-bar" aria-hidden="true"><span style="width:48%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:35%;background:var(--green);opacity:.5"></i><i style="height:55%;background:var(--green);opacity:.65"></i><i style="height:75%;background:var(--green);opacity:.85"></i><i style="height:92%;background:var(--green)"></i></div><span class="g-lbl pos">+12.80% of contributed</span><div class="s pos">+12.80% of total contributed</div></div>
       <div class="stat"><div class="k">Realised</div><div class="v mono pos">+$14,250</div><div class="mini-bar" aria-hidden="true"><span style="width:56%;background:var(--green)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:40%;background:var(--green);opacity:.5"></i><i style="height:62%;background:var(--green);opacity:.65"></i><i style="height:82%;background:var(--green);opacity:.85"></i><i style="height:100%;background:var(--green)"></i></div><span class="g-lbl pos">+14.14% of contributed</span><div class="s pos">+14.14% of total contributed</div></div>
-      <div class="stat"><div class="k">Total with profit</div><div class="v mono">$127,235</div><div class="mini-bar" aria-hidden="true"><span style="width:100%;background:var(--gold)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:38%;background:var(--gold);opacity:.5"></i><i style="height:58%;background:var(--gold);opacity:.65"></i><i style="height:80%;background:var(--gold);opacity:.85"></i><i style="height:100%;background:var(--gold)"></i></div><span class="g-lbl pos">+26.25% on contributed</span><div class="s pos">+26.25% on total contributed, before expenses</div></div>
+      <div class="stat"><div class="k">Total with profit</div><div class="v mono">$127,933</div><div class="mini-bar" aria-hidden="true"><span style="width:100%;background:var(--gold)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:38%;background:var(--gold);opacity:.5"></i><i style="height:58%;background:var(--gold);opacity:.65"></i><i style="height:80%;background:var(--gold);opacity:.85"></i><i style="height:100%;background:var(--gold)"></i></div><span class="g-lbl pos">+26.94% on contributed</span><div class="s pos">+26.94% on total contributed, before expenses</div></div>
     </div>
     </div>
     <div class="highlights">
       <div class="hl"><h3>Top holdings by weight</h3><ul>
-        <li><span class="t">AVGO</span><span class="mono">8.87% · +$4,721</span></li>
-        <li><span class="t">GS</span><span class="mono">6.88% · +$3,597</span></li>
-        <li><span class="t">GOOG</span><span class="mono">5.89% · −$382</span></li>
-        <li><span class="t">TSM</span><span class="mono">5.36% · +$681</span></li>
-        <li><span class="t">GEV</span><span class="mono">3.95% · +$695</span></li>
+        <li><span class="t">AVGO</span><span class="mono">8.87% · +$5,219</span></li>
+        <li><span class="t">GS</span><span class="mono">6.88% · +$3,545</span></li>
+        <li><span class="t">GOOG</span><span class="mono">5.89% · −$350</span></li>
+        <li><span class="t">TSM</span><span class="mono">5.36% · +$731</span></li>
+        <li><span class="t">GEV</span><span class="mono">3.95% · +$649</span></li>
       </ul></div>
       <div class="hl"><h3>Biggest movers (unrealised)</h3><ul>
-        <li><span class="t">AVGO</span><span class="mono pos">+$4,721</span></li>
-        <li><span class="t">GS</span><span class="mono pos">+$3,597</span></li>
-        <li><span class="t">AMD</span><span class="mono pos">+$2,867</span></li>
-        <li><span class="t">TMF</span><span class="mono neg">−$1,518</span></li>
-        <li><span class="t">ORCL</span><span class="mono neg">−$1,384</span></li>
+        <li><span class="t">AVGO</span><span class="mono pos">+$5,219</span></li>
+        <li><span class="t">GS</span><span class="mono pos">+$3,545</span></li>
+        <li><span class="t">AMD</span><span class="mono pos">+$3,081</span></li>
+        <li><span class="t">DELL</span><span class="mono pos">+$2,145</span></li>
+        <li><span class="t">CRWD</span><span class="mono pos">+$2,032</span></li>
+        <li><span class="t">TMF</span><span class="mono neg">−$1,470</span></li>
+        <li><span class="t">ORCL</span><span class="mono neg">−$1,407</span></li>
       </ul></div>
     </div>
   </section>
@@ -538,21 +540,21 @@
       </div>
     <div class="stat-grid broker-stats" aria-label="IBKR summary in a single line">
       <div class="stat"><div class="k">Invested</div><div class="v mono">$6,866</div><div class="mini-bar" aria-hidden="true"><span style="width:49%;background:var(--ibkr)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:45%;background:var(--ibkr);opacity:.5"></i><i style="height:60%;background:var(--ibkr);opacity:.65"></i><i style="height:80%;background:var(--ibkr);opacity:.85"></i><i style="height:100%;background:var(--ibkr)"></i></div><span class="g-lbl">49.3% of total amount</span><div class="s">of $13,916.16 total amount</div></div>
-      <div class="stat"><div class="k">Unrealised</div><div class="v mono neg">−$345</div><div class="mini-bar" aria-hidden="true"><span style="width:12%;background:var(--red)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:100%;background:var(--red)"></i><i style="height:72%;background:var(--red);opacity:.85"></i><i style="height:50%;background:var(--red);opacity:.65"></i><i style="height:30%;background:var(--red);opacity:.5"></i></div><span class="g-lbl neg">−2.48% of total amount</span><div class="s neg">−2.48% of total amount</div></div>
+      <div class="stat"><div class="k">Unrealised</div><div class="v mono neg">−$238</div><div class="mini-bar" aria-hidden="true"><span style="width:12%;background:var(--red)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:100%;background:var(--red)"></i><i style="height:72%;background:var(--red);opacity:.85"></i><i style="height:50%;background:var(--red);opacity:.65"></i><i style="height:30%;background:var(--red);opacity:.5"></i></div><span class="g-lbl neg">−1.71% of total amount</span><div class="s neg">−1.71% of total amount</div></div>
       <div class="stat"><div class="k">Realised</div><div class="v mono">$0</div><div class="mini-bar" aria-hidden="true"><span style="width:6%;background:var(--muted)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:30%;background:var(--muted);opacity:.5"></i><i style="height:30%;background:var(--muted);opacity:.65"></i><i style="height:30%;background:var(--muted);opacity:.85"></i><i style="height:30%;background:var(--muted)"></i></div><span class="g-lbl">No sales yet</span><div class="s">No sales yet</div></div>
-      <div class="stat"><div class="k">Account value</div><div class="v mono">$13,572</div><div class="mini-bar" aria-hidden="true"><span style="width:98%;background:var(--ibkr)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:42%;background:var(--ibkr);opacity:.5"></i><i style="height:60%;background:var(--ibkr);opacity:.65"></i><i style="height:82%;background:var(--ibkr);opacity:.85"></i><i style="height:100%;background:var(--ibkr)"></i></div><span class="g-lbl">Equity + cash</span><div class="s">Equity $6,521 + cash $7,051</div></div>
+      <div class="stat"><div class="k">Account value</div><div class="v mono">$13,678</div><div class="mini-bar" aria-hidden="true"><span style="width:98%;background:var(--ibkr)"></span></div><div class="mini-spark" aria-hidden="true"><i style="height:42%;background:var(--ibkr);opacity:.5"></i><i style="height:60%;background:var(--ibkr);opacity:.65"></i><i style="height:82%;background:var(--ibkr);opacity:.85"></i><i style="height:100%;background:var(--ibkr)"></i></div><span class="g-lbl">Equity + cash</span><div class="s">Equity $6,628 + cash $7,051</div></div>
     </div>
     </div>
     <div class="highlights">
       <div class="hl"><h3>Holdings by weight</h3><ul>
-        <li><span class="t">IGV</span><span class="mono">14.73% · −$134</span></li>
-        <li><span class="t">PANW</span><span class="mono">9.74% · −$119</span></li>
-        <li><span class="t">NVDA</span><span class="mono">9.20% · −$36</span></li>
-        <li><span class="t">BRK.B</span><span class="mono">8.31% · +$17</span></li>
-        <li><span class="t">VRT</span><span class="mono">7.35% · −$72</span></li>
+        <li><span class="t">IGV</span><span class="mono">14.73% · −$110</span></li>
+        <li><span class="t">PANW</span><span class="mono">9.74% · +$4</span></li>
+        <li><span class="t">NVDA</span><span class="mono">9.20% · −$72</span></li>
+        <li><span class="t">BRK.B</span><span class="mono">8.31% · −$8</span></li>
+        <li><span class="t">VRT</span><span class="mono">7.35% · −$51</span></li>
       </ul></div>
       <div class="hl"><h3>Account notes</h3><ul>
-        <li><span>Half the account is still cash</span><span class="info-wrap flip"><button type="button" class="info-btn" aria-expanded="false" aria-label="IBKR account notes">i</button><span class="info-pop" hidden>Half the account is still cash, waiting to be deployed. NVDA is still held here — it was fully sold in Tiger, realising +$6,250 there. BRK.B is the only IBKR holding currently in profit.</span></span></li>
+        <li><span>Half the account is still cash</span><span class="info-wrap flip"><button type="button" class="info-btn" aria-expanded="false" aria-label="IBKR account notes">i</button><span class="info-pop" hidden>Half the account is still cash, waiting to be deployed. NVDA is still held here — it was fully sold in Tiger, realising +$6,250 there. PANW is the only IBKR holding currently in profit.</span></span></li>
       </ul></div>
     </div>
   </section>
@@ -561,51 +563,52 @@
   </div><!-- /tabs-shell -->
 
   <footer>
-    Snapshot as on <strong>Tuesday, 17 Nov 2026 close</strong> · USD
+    Snapshot as on <strong>Wednesday, 18 Nov 2026 close</strong> · USD
   </footer>
 </div>
 <script>
-/* Holdings baked in from the sheet read on 18 Nov 2026, 08:00 SGT.
+/* Holdings baked in from the sheet read on 19 Nov 2026, 05:45 SGT.
    Fields: ticker, price (string — DRAM is "NA" in the sheet), shares, invested, unrealised, realised, weight % */
 var TIGER = [
-["AAPL","351.91",3,1006.58,49.15,0,0.88],["AMD","503.41",8,1160.36,2866.92,0,1.01],
-["AMZN","257.89",10,2254.20,324.70,0,2.24],["APP","398.94",2,951.18,-153.30,0,0.94],
-["ARM","183.39",15,1893.07,857.78,232.09,1.88],["ASML","1383.11",2,1682.84,1083.38,0,1.67],
-["AVGO","341.6",40,8943.25,4720.75,0,8.87],["AXON","298.59",1,788.07,-489.48,0,0.78],
-["BABA","86.65",8,1286.20,-593.00,0,1.28],["BE","173.46",2,543.18,-196.26,0,0.54],
-["CAT","570.79",4,2227.96,55.20,0,2.21],["CBRS","104.18",2,490.18,-281.82,0,0.49],
-["CEG","268.07",4,1226.78,-154.50,0,1.22],["CRCL","54.63",4,515.60,-297.08,0,0.51],
-["CRWD","219.58",15,1523.83,1769.87,0,1.51],["CRWV","49.89",3,434.78,-285.11,0,0.40],
-["DELL","322.79",12,1612.60,2260.88,0,1.40],["DKNG","18",15,304.40,-34.40,0,0.26],
-["DRAM","NA",20,1234.40,-55.00,0,1.22],["EXPE","243.16",0,0,0,179.51,0],
-["FCX","55.3",0,0,0,218.65,0],["FISV","53",10,670.20,-140.20,0,0.66],
-["FIX","1099.02",1,1440.17,-341.15,0,1.43],["GEV","779.91",6,3984.56,694.90,0,3.95],
-["GLW","108.49",15,2191.48,-564.13,0,2.17],["GOOG","277.6",20,5933.57,-381.57,0,5.89],
-["GS","877.52",12,6933.20,3597.04,0,6.88],["HOG","33.27",10,267.90,64.80,0,0.27],
-["IJR","137",0,0,0,19.27,0],["IONQ","24.84",10,575.60,-327.20,0,0.57],
-["IREN","15.81",10,587.20,-429.10,0,0.58],["ITB","91.73",6,643.00,-92.62,0,0.64],
-["JPM","329.96",2,668.80,-8.88,0,0.66],["KRE","70.85",8,519.79,47.01,0,0.52],
-["LHX","260.74",4,1472.20,-429.24,0,1.46],["LITE","559.97",1,1054.40,-494.43,0,1.05],
-["LRCX","210.69",0,0,0,1.30,0],["META","618.87",5,3222.36,-128.01,0,3.20],
-["MP","34.86",0,0,0,187.08,0],["MU","712.42",5,2076.85,1485.25,0,1.81],
-["NKE","35.85",10,637.20,-278.70,0,0.63],["NFLX","59.68",15,1035.66,-140.46,0,1.03],
-["NOW","92.9",25,2551.60,-229.10,0,2.53],["NVDA","155.46",0,0,0,6250.06,0],
-["NXT","114",4,197.78,258.22,0,0.20],["ORCL","115",20,3684.43,-1384.43,0,3.65],
-["PLTR","156.56",5,339.69,443.11,0,0.34],["PYPL","58.11",10,794.20,-213.10,0,0.69],
-["Q","114.49",8,1283.40,-367.48,0,1.27],["QTUM","122.42",15,1728.87,107.43,0,1.50],
-["RACE","399.11",5,1868.96,126.59,0,1.62],["RDDT","94.48",4,250.00,127.92,0,0.25],
-["RIVN","11.88",15,302.39,-124.19,0,0.30],["SAP","222.51",8,1427.00,353.08,0,1.41],
-["SHAK","72.78",3,367.28,-148.94,0,0.36],["SLB","48.95",0,0,0,98.58,0],
-["SOFI","14.28",0,0,0,0,0],["SPCX","141.7",10,1538.38,-121.38,0,1.52],
-["TEM","63.43",0,0,0,138.39,0],["TMF","27.55",70,3446.33,-1517.83,0,3.42],
-["TMUS","167.9",6,912.19,95.21,0,0.90],["TSLA","380.11",10,2776.54,1024.56,-122.69,2.74],
-["TSM","359.69",17,5433.53,681.20,0,5.36],["VLO","363.77",0,0,0,16.95,0],
-["VST","127.15",5,806.94,-171.19,0,0.80],["WMT","127.52",16,2004.40,35.92,0,1.99]
+["AAPL","352.45",3,1006.58,50.77,0,0.88],["AMD","530.14",8,1160.36,3080.76,0,1.01],
+["AMZN","267.74",10,2254.20,423.20,0,2.24],["APP","390.91",2,951.18,-169.36,0,0.94],
+["ARM","182.76",15,1893.07,848.33,232.09,1.88],["ASML","1395.27",2,1682.84,1107.70,0,1.67],
+["AVGO","354.05",40,8943.25,5218.75,0,8.87],["AXON","300.69",1,788.07,-487.38,0,0.78],
+["BABA","84.37",8,1286.20,-611.24,0,1.28],["BE","170.98",2,543.18,-201.22,0,0.54],
+["CAT","558.77",4,2227.96,7.12,0,2.21],["CBRS","94.15",2,490.18,-301.88,0,0.49],
+["CEG","262.74",4,1226.78,-175.82,0,1.22],["CRCL","53.31",4,515.60,-302.36,0,0.51],
+["CRWD","237.03",15,1523.83,2031.62,0,1.51],["CRWV","47.83",3,434.78,-291.29,0,0.40],
+["DELL","313.11",12,1612.60,2144.72,0,1.40],["DKNG","17.92",15,304.40,-35.60,0,0.26],
+["DRAM","NA",20,1234.40,-55.00,0,1.22],["EXPE","245.79",0,0,0,179.51,0],
+["FCX","51.45",0,0,0,218.65,0],["FISV","53",10,670.20,-140.20,0,0.66],
+["FIX","1140.59",1,1440.17,-299.58,0,1.43],["GEV","772.22",6,3984.56,648.76,0,3.95],
+["GLW","108.15",15,2191.48,-569.23,0,2.17],["GOOG","279.20",20,5933.57,-349.57,0,5.89],
+["GS","873.18",12,6933.20,3544.96,0,6.88],["HOG","33.34",10,267.90,65.50,0,0.27],
+["IJR","137.9",0,0,0,19.27,0],["IONQ","23.48",10,575.60,-340.80,0,0.57],
+["IREN","15.24",10,587.20,-434.80,0,0.58],["ITB","92.66",6,643.00,-87.04,0,0.64],
+["JPM","324.11",2,668.80,-20.58,0,0.66],["KRE","70.52",8,519.79,44.37,0,0.52],
+["LHX","256.36",4,1472.20,-446.76,0,1.46],["LITE","551.07",1,1054.40,-503.33,0,1.05],
+["LRCX","211.67",0,0,0,1.30,0],["META","616.38",5,3222.36,-140.46,0,3.20],
+["MP","35.95",0,0,0,187.08,0],["MU","705.27",5,2076.85,1449.50,0,1.81],
+["NKE","36.31",10,637.20,-274.10,0,0.63],["NFLX","59.82",15,1035.66,-138.36,0,1.03],
+["NOW","90.59",25,2551.60,-286.85,0,2.53],["NVDA","150.96",0,0,0,6250.06,0],
+["NXT","114",4,197.78,258.22,0,0.20],["ORCL","113.89",20,3684.43,-1406.63,0,3.65],
+["PLTR","156.67",5,339.69,443.66,0,0.34],["PYPL","57.89",10,794.20,-215.30,0,0.69],
+["Q","115.82",8,1283.40,-356.84,0,1.27],["QTUM","122.95",15,1728.87,115.38,0,1.50],
+["RACE","410.91",5,1868.96,185.59,0,1.62],["RDDT","94.09",4,250.00,126.36,0,0.25],
+["RIVN","11.8",15,302.39,-125.39,0,0.30],["SAP","210.76",8,1427.00,259.08,0,1.41],
+["SHAK","74.45",3,367.28,-143.93,0,0.36],["SLB","48.41",0,0,0,98.58,0],
+["SOFI","14.11",0,0,0,0,0],["SPCX","143.5",10,1538.38,-103.38,0,1.52],
+["TEM","63.62",0,0,0,138.39,0],["TMF","28.23",70,3446.33,-1470.23,0,3.42],
+["TMUS","164.02",6,912.19,71.93,0,0.90],["TSLA","383.72",10,2776.54,1060.66,-122.69,2.74],
+["TSM","362.62",17,5433.53,731.01,0,5.36],["VLO","343.7",0,0,0,16.95,0],
+["VST","125.58",5,806.94,-179.04,0,0.80],["WMT","127.36",16,2004.40,33.36,0,1.99],
+["BTC","27.62",50,1767.56,-386.56,0,1.54]
 ];
 var IBKR = [
-["BRK.B","586.76",2,1157.00,16.52,0,8.31],["IGV","95.74",20,2049.22,-134.42,0,14.73],
-["NVDA","155.46",8,1280.00,-36.32,0,9.20],["PANW","309.29",4,1356.00,-118.84,0,9.74],
-["VRT","190.37",5,1023.35,-71.50,0,7.35]
+["BRK.B","574.62",2,1157.00,-7.76,0,8.31],["IGV","96.94",20,2049.22,-110.42,0,14.73],
+["NVDA","150.96",8,1280.00,-72.32,0,9.20],["PANW","339.92",4,1356.00,3.68,0,9.74],
+["VRT","194.48",5,1023.35,-50.95,0,7.35]
 ];
 function money(n){ var s = Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); return (n<0?"−$":"$")+s; }
 function signed(n){ if(n===0) return "$0.00"; return (n>0?"+$":"−$")+Math.abs(n).toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); }

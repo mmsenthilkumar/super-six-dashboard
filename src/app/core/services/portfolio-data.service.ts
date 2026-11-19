@@ -15,7 +15,7 @@ import type { BrokerSnapshot, HoldingRow, PortfolioData, PortfolioResponse } fro
  * Leave it as '' (empty) and the app uses the static Wednesday 18 Nov 2026
  * snapshot embedded below — the app works fully offline / before deployment.
  */
-export const APPS_SCRIPT_DATA_URL = '';
+export const APPS_SCRIPT_DATA_URL = 'https://script.google.com/macros/s/AKfycbzjC2l9y3_2JkWgzhnrY9y_0Z88Fl2XrqmhEiY-fs0XCP9FkadYrP4OpctqLiztHjOvwA/exec';
 
 /** Auto-refresh interval: fetch on load, then every 15 minutes. */
 export const AUTO_REFRESH_MS = 15 * 60 * 1000;

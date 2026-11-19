@@ -4,7 +4,7 @@ import { ChallengeHeroComponent } from './features/challenge-hero/challenge-hero
 import { BrokerTabsComponent } from './features/broker-tabs/broker-tabs.component';
 import { CombinedOverviewComponent } from './features/combined-overview/combined-overview.component';
 import { BrokerSectionComponent } from './features/broker-section/broker-section.component';
-import { PortfolioDataService } from './core/services/portfolio-data.service';
+import { APP_VERSION, PortfolioDataService } from './core/services/portfolio-data.service';
 import { UiPreferencesService } from './core/services/ui-preferences.service';
 
 /**
@@ -22,6 +22,7 @@ import { UiPreferencesService } from './core/services/ui-preferences.service';
 export class AppComponent implements OnInit, OnDestroy {
   protected dataSvc = inject(PortfolioDataService);
   protected prefs = inject(UiPreferencesService);
+  protected appVersion = APP_VERSION;
 
   ngOnInit(): void {
     // Fetch on load, then every 15 min (browser only; no timer during SSR/build).

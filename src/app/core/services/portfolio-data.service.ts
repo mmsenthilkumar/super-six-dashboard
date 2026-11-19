@@ -20,6 +20,15 @@ export const APPS_SCRIPT_DATA_URL = 'https://script.google.com/macros/s/AKfycbzj
 /** Auto-refresh interval: fetch on load, then every 15 minutes. */
 export const AUTO_REFRESH_MS = 15 * 60 * 1000;
 
+/**
+ * App version, shown in the footer (e.g. "v1.0.1") so it is visible which
+ * build is running. Bump on each release: 1.0.0 was the first Angular
+ * deploy (19 Nov 2026), 1.0.1 is the smart-refresh release. The update
+ * check itself still compares the main-*.js hash — that is automatic and
+ * cannot be forgotten; the version number is for humans to track.
+ */
+export const APP_VERSION = '1.0.1';
+
 export type DataSource = 'static' | 'live' | 'live-fallback';
 
 const TIGER_ROWS: HoldingRow[] = [
@@ -255,20 +264,45 @@ export class PortfolioDataService {
   }
 
   /**
-   * Manual refresh (the refresh icon button). Does a full page reload, not
-   * just a data re-fetch: a data-only refresh leaves the currently loaded
-   * bundle in place, so after a new deploy the page never updated until
-   * the app was closed and reopened. A reload picks up the latest build
-   * from Pages AND fresh sheet data on load (the app fetches on load).
-   * The ?v= timestamp busts the WebView/page cache so the new index.html
-   * is actually fetched. Auto-refresh (15 min) stays data-only on purpose.
+   * Manual refresh (the refresh icon button). Hybrid: always re-fetches the
+   * sheet data (fast, keeps the current tab, scroll position and text size,
+   * no re-login risk), and only reloads the page when a NEW BUILD exists.
+   * A plain data refresh can never show a new deploy; a reload on every tap
+   * resets the tab/font/scroll and can drop the user at the Access sign-in
+   * if the 24-hour session expired. So: data first, then check the deployed
+   * index.html for a different main-*.js hash, and reload (cache-busting)
+   * only when one is found. Auto-refresh (15 min) stays data-only.
    */
   refresh(): void {
-    if (this.isBrowser && typeof window !== 'undefined') {
-      window.location.href = window.location.pathname + '?v=' + Date.now();
-      return;
-    }
     this.fetchFromSheet();
+    if (!this.isBrowser) return;
+    void this.checkForUpdate().then((hasUpdate) => {
+      if (hasUpdate && typeof window !== 'undefined') {
+        window.location.href = window.location.pathname + '?v=' + Date.now();
+      }
+    });
+  }
+
+  /** True when the deployed index.html references a different main-*.js
+   *  bundle than the one this page loaded — i.e. a new version is live. */
+  private async checkForUpdate(): Promise<boolean> {
+    try {
+      const loaded = this.loadedMainHash();
+      if (!loaded || typeof fetch === 'undefined') return false;
+      const res = await fetch('/?v=' + Date.now(), { cache: 'no-store' });
+      const html = await res.text();
+      const deployed = html.match(/main-([A-Z0-9]+)\.js/)?.[1] ?? null;
+      return !!deployed && deployed !== loaded;
+    } catch {
+      return false;
+    }
+  }
+
+  /** Hash of the main-*.js bundle this page actually loaded. */
+  private loadedMainHash(): string | null {
+    if (typeof document === 'undefined') return null;
+    const src = document.querySelector('script[src*="main-"]')?.getAttribute('src') ?? '';
+    return src.match(/main-([A-Z0-9]+)\.js/)?.[1] ?? null;
   }
 
   /**

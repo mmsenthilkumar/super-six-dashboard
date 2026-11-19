@@ -1,10 +1,19 @@
 /**
  * Super Six — Apps Script data endpoint for the Angular dashboard.
- * Sheet: "Senthil - Individual Shares" (ID below), tabs 'Tiger - US Markets' and 'IBKR - US Markets'.
+ * Sheet (project account): "Senthil - Individual Shares" copy, ID below,
+ * tabs 'Tiger - US Markets' and 'IBKR - US Markets'.
+ * Layout verified 19 Nov 2026 from a raw dump of the sheet:
+ * - Holdings rows first (incl. closed zero-share rows and the BTC row),
+ *   then a "Past Transactions" label row, then the MAIN TOTALS row
+ *   (blank ticker, invested/unrealised/realised in cols D/E/F),
+ *   then "Sell Transactions ..." history, then a "TOTAL" row that is
+ *   ONLY the sell-transactions total — never use it as the headline total.
+ * - Side panel: cash/weights on the first holdings row, cols M/N/O;
+ *   profit-dashboard labels in col M with values in col N;
+ *   "Total Amount" label in col I, USD value in col K (col J is SGD).
  * Returns JSON: { tiger: { rows, totals }, ibkr: { rows, totals }, snapshotLabel, asOf }
- * Do NOT deploy from here — Senthil deploys it himself (see README.md in this folder).
  */
-var SHEET_ID = '1iYFP_UYlBO-yX5O7NeA8HAW5QLwGuv3BphCCw0lBjeI';
+var SHEET_ID = '1aBArvu654WCjovWxIcrjLCfEg07KFt9Z324Xc4jQJys';
 var TIGER_TAB = 'Tiger - US Markets';
 var IBKR_TAB = 'IBKR - US Markets';
 
@@ -21,12 +30,10 @@ function doGet() {
 }
 
 /**
- * Reads one broker tab via getDataRange().getValues().
- * Expected layout (same as the sheet today): header row, then one row per ticker.
- * Columns (0-based): 0 Ticker, 1 Price, 2 Shares, 3 Invested, 4 Unrealised, 5 Realised, 6 Weight%.
- * The totals row (first cell "Total" / "TOTAL") is used for the headline totals —
- * realised MUST come from that totals row, NOT a row sum (Tiger row-sum realised
- * is ~$7,219; the sheet total is $14,249.61).
+ * Reads one broker tab. Columns (0-based): 0 Ticker, 1 Price, 2 Shares,
+ * 3 Invested, 4 Unrealised, 5 Realised, 6 Weight%.
+ * Holdings = rows up to the main totals row (blank ticker, invested > 0).
+ * Everything below it is sell-transaction history and is NOT read.
  */
 function readBroker(ss, tabName, isTiger) {
   var sheet = ss.getSheetByName(tabName);
@@ -36,15 +43,21 @@ function readBroker(ss, tabName, isTiger) {
   for (var i = 1; i < values.length; i++) {
     var r = values[i];
     var ticker = String(r[0] || '').trim();
-    if (!ticker) continue;
-    if (/^total/i.test(ticker)) {
+    // Main totals row: blank ticker, invested/unrealised/realised in D/E/F.
+    // Capture it and stop — below it is only sell-transaction history.
+    if (!ticker && num(r[3]) > 0) {
       totals = {
         invested: num(r[3]), unrealised: num(r[4]), realised: num(r[5]),
         totalWithProfit: 0, cash: 0, cashPct: 0, equityPct: 0, contributed: 0,
         contributedLabel: isTiger ? 'Total contributed' : 'Total amount'
       };
-      continue;
+      break;
     }
+    if (!ticker) continue;
+    // Section headers, never holdings.
+    if (/transactions/i.test(ticker)) continue;
+    if (/US Markets$/.test(ticker)) continue;
+    if (/^total$/i.test(ticker)) continue;
     rows.push({
       ticker: ticker,
       price: r[1] === 'NA' || r[1] === null || r[1] === '' ? 'NA' : String(r[1]),
@@ -56,34 +69,39 @@ function readBroker(ss, tabName, isTiger) {
     });
   }
   if (!totals) totals = sumTotals(rows);
-  // Cash / equity / contributed are read from the sheet's side-column area below.
-  // Fallback to the known Wednesday 18 Nov 2026 values if those cells move.
   var side = readSideTotals(ss, tabName, isTiger);
   totals.cash = side.cash; totals.cashPct = side.cashPct; totals.equityPct = side.equityPct;
   totals.contributed = side.contributed;
-  totals.totalWithProfit = round2(totals.invested + totals.unrealised + totals.realised + (isTiger ? (side.expenses || 0) : 0) - (isTiger ? 0 : 0));
-  if (!isTiger) totals.totalWithProfit = round2(totals.invested + totals.unrealised + side.cash);
-  if (isTiger) totals.totalWithProfit = round2(122865.31 + (side.expenses || 5068)); // profit-after-expenses + expenses
   totals.expenses = side.expenses || 0;
+  if (isTiger) {
+    totals.totalWithProfit = side.totalWithProfit || round2(122865.31 + (side.expenses || 5068));
+  } else {
+    totals.totalWithProfit = round2(totals.invested + totals.unrealised + side.cash);
+  }
   return { rows: rows, totals: totals };
 }
 
 function readSideTotals(ss, tabName, isTiger) {
-  // Best-effort scan of the whole tab for labelled cells ("Cash", "Total contributed",
-  // "Total amount", "Expenses"). If labels move, the fallbacks below keep the app working.
   var values = ss.getSheetByName(tabName).getDataRange().getValues();
-  var out = isTiger
-    ? { cash: 12489.04, cashPct: 4.89, equityPct: 95.11, contributed: 100782.50, expenses: 5068 }
-    : { cash: 7050.59, cashPct: 50.66, equityPct: 49.34, contributed: 13916.16, expenses: 0 };
+  // Cash and weights sit on the first holdings row, cols M/N/O (12/13/14);
+  // the M/N/O values there are fractions (0.0489 = 4.89%).
+  var out = {
+    cash: num(values[1][12]),
+    cashPct: round2(num(values[1][13]) * 100),
+    equityPct: round2(num(values[1][14]) * 100),
+    contributed: isTiger ? 100782.50 : 13916.16,
+    expenses: isTiger ? 5068 : 0,
+    totalWithProfit: 0
+  };
   for (var i = 0; i < values.length; i++) {
-    for (var j = 0; j < values[i].length; j++) {
-      var label = String(values[i][j] || '').toLowerCase();
-      var v = j + 1 < values[i].length ? num(values[i][j + 1]) : 0;
-      if (/^cash/.test(label) && v) out.cash = v;
-      if (/total contributed/.test(label) && v) out.contributed = v;
-      if (/total amount/.test(label) && v) out.contributed = v;
-      if (/^expenses/.test(label) && v) out.expenses = v;
-    }
+    // Profit-dashboard labels in col M (12), values in col N (13).
+    var labelM = String(values[i][12] || '').trim();
+    if (labelM === 'Total With Profit (USD)') out.totalWithProfit = num(values[i][13]);
+    if (labelM === 'Total Expenses / Distribution (USD)') out.expenses = num(values[i][13]);
+    if (labelM === 'Investment Amount (USD)') out.contributed = num(values[i][13]);
+    // "Total Amount" label in col I (8): col J (9) is SGD, col K (10) is USD.
+    var labelI = String(values[i][8] || '').trim();
+    if (labelI === 'Total Amount') out.contributed = num(values[i][10]);
   }
   return out;
 }

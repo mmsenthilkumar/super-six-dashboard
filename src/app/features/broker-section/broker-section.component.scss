@@ -50,3 +50,14 @@ tfoot td:first-child{text-align:left}
   .highlights{grid-template-columns:1fr;gap:5px;padding:8px 0 10px;margin:2px 11px 0}
   .hl{padding:6px 8px}.hl li{font-size:.72rem}
 }
+
+/* Mobile card overrides — MUST live in this component file, not the global
+   _mobile-cards.scss. Angular scopes .tk-sub/.m-cell display:none above with
+   a component attribute, which outranks the global mobile rules, so on
+   phones the price/shares line and the unrealised pill never appeared
+   (rows showed only the ticker). These same-file rules win. */
+@media (max-width: 760px) {
+  .tk-sub { display: block; font-size: .6rem; font-weight: 600; color: var(--muted); line-height: 1.25; }
+  .zero .tk-sub { display: none; }
+  tbody td.m-cell { display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 2px; border-bottom: none; padding: 0; text-align: right; min-width: 0; }
+}

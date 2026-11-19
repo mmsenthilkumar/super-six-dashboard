@@ -5,29 +5,41 @@
   <span>{{ ptrState() === 'ready' ? 'Release to refresh' : ptrState() === 'refreshing' ? 'Refreshing…' : 'Pull to refresh' }}</span>
 </div>
 <div class="wrap" [style.font-size]="prefs.fontScalePct()">
-  <app-challenge-hero [challenge]="dataSvc.data().challenge" [dataSource]="dataSvc.source()" (refresh)="dataSvc.refresh()" />
-  <app-broker-tabs />
-  <div class="tab-panels">
-    @if (prefs.activeTab() === 'both') {
-      <div class="tab-panel" id="panel-both" role="tabpanel" aria-labelledby="tab-both">
-        <app-combined-overview [data]="dataSvc.data()" />
-      </div>
-    }
-    @if (prefs.activeTab() === 'tiger') {
-      <div class="tab-panel" id="panel-tiger" role="tabpanel" aria-labelledby="tab-tiger">
-        <app-broker-section [snapshot]="dataSvc.data().tiger" />
-      </div>
-    }
-    @if (prefs.activeTab() === 'ibkr') {
-      <div class="tab-panel" id="panel-ibkr" role="tabpanel" aria-labelledby="tab-ibkr">
-        <app-broker-section [snapshot]="dataSvc.data().ibkr" />
-      </div>
-    }
-  </div>
-  <footer>
-    @if (dataSvc.source() === 'live' && dataSvc.lastUpdated()) { <span>Live Data as on {{ dataSvc.lastUpdated() | date:'d MMM y, h:mm a' }}</span> }
-    @if (dataSvc.source() === 'live-fallback') { <span>Live failed, showing saved snapshot</span> }
-    @if (dataSvc.source() === 'static') { <span>{{ dataSvc.data().snapshotLabel }} · USD</span> }
-    <span> · v{{ appVersion }}</span>
-  </footer>
+  @if (dataSvc.data(); as data) {
+    <app-challenge-hero [challenge]="data.challenge" (refresh)="dataSvc.refresh()" />
+    <app-broker-tabs />
+    <div class="tab-panels">
+      @if (prefs.activeTab() === 'both') {
+        <div class="tab-panel" id="panel-both" role="tabpanel" aria-labelledby="tab-both">
+          <app-combined-overview [data]="data" />
+        </div>
+      }
+      @if (prefs.activeTab() === 'tiger') {
+        <div class="tab-panel" id="panel-tiger" role="tabpanel" aria-labelledby="tab-tiger">
+          <app-broker-section [snapshot]="data.tiger" />
+        </div>
+      }
+      @if (prefs.activeTab() === 'ibkr') {
+        <div class="tab-panel" id="panel-ibkr" role="tabpanel" aria-labelledby="tab-ibkr">
+          <app-broker-section [snapshot]="data.ibkr" />
+        </div>
+      }
+    </div>
+    <footer>
+      @if (dataSvc.lastUpdated()) { <span>Live Data as on {{ dataSvc.lastUpdated() | date:'d MMM y, h:mm a' }}</span> }
+      <span> · v{{ appVersion }}</span>
+    </footer>
+  } @else {
+    <div class="empty-state" role="status">
+      @if (dataSvc.loading()) {
+        <p class="empty-title">Loading live data…</p>
+        <p>Fetching the latest holdings from the sheet.</p>
+      } @else {
+        <p class="empty-title">Couldn't load the holdings.</p>
+        <p>The live data didn't come through — nothing is shown rather than old numbers.</p>
+        <button type="button" class="retry-btn" (click)="dataSvc.refresh()">Try again</button>
+      }
+    </div>
+    <footer><span>v{{ appVersion }}</span></footer>
+  }
 </div>

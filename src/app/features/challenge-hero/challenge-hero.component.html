@@ -28,9 +28,6 @@
       <span class="pct mono">{{ challenge.combinedPct | portfolioFormat:'pct':1 }} of $1M</span>
     </div>
     <div class="bar" role="img" [attr.aria-label]="'Progress to one million dollars: ' + challenge.combinedPct + ' percent'"><div [style.width.%]="challenge.combinedPct"></div></div>
-    @if (dataSource === 'live-fallback') {
-      <div class="progress-note">Live data could not be loaded — showing the saved snapshot. Check the Apps Script URL in portfolio-data.service.ts.</div>
-    }
   </div>
 
   <div class="milestone-graph" [attr.aria-label]="'Milestone straight line graph: now at ' + nowLabel + ', next targets 250 thousand, 500 thousand and 1 million by December 2034'">

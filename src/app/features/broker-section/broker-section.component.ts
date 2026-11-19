@@ -46,21 +46,32 @@ export class BrokerSectionComponent {
     return 'flat';
   }
   protected get stats(): StatItem[] {
+    // Every number here is computed live from the totals — no hardcoded
+    // percentages or amounts. Bars show each figure as % of contributed
+    // (Tiger) / total amount (IBKR), capped at 100.
     const t = this.snapshot.totals;
     const isTiger = this.snapshot.key === 'tiger';
+    const base = t.contributed || 0;
+    const pctOf = (v: number): number => (base ? (v / base) * 100 : 0);
+    const signed = (pct: number): string => (pct >= 0 ? '+' : '−') + Math.abs(pct).toFixed(2) + '%';
+    const bar = (v: number): number => Math.max(0, Math.min(100, Math.abs(pctOf(v))));
+    const signClass = (v: number): 'pos' | 'neg' => (v >= 0 ? 'pos' : 'neg');
+    const contributedLabel = isTiger ? 'contributed' : 'total amount';
     if (isTiger) {
+      const profitPct = t.profitPct ?? pctOf(t.unrealised + t.realised);
       return [
-        { label: 'Invested', value: this.fmt.transform(t.invested, 'usd'), barPct: 77, barColor: 'var(--tiger)', graphLabel: '96.7% of contributed', sub: 'Total contributed $100,782.50' },
-        { label: 'Unrealised', value: this.fmt.transform(t.unrealised, 'signed'), valueClass: 'pos', barPct: 48, barColor: 'var(--green)', graphLabel: '+12.80% of contributed', graphLabelClass: 'pos', sub: '+12.80% of total contributed', subClass: 'pos' },
-        { label: 'Realised', value: this.fmt.transform(t.realised, 'signed'), valueClass: 'pos', barPct: 56, barColor: 'var(--green)', graphLabel: '+14.14% of contributed', graphLabelClass: 'pos', sub: '+14.14% of total contributed', subClass: 'pos' },
-        { label: 'Total with profit', value: this.fmt.transform(t.totalWithProfit, 'usd'), barPct: 100, barColor: 'var(--gold)', graphLabel: '+26.94% on contributed', graphLabelClass: 'pos', sub: '+26.94% on total contributed, before expenses', subClass: 'pos' },
+        { label: 'Invested', value: this.fmt.transform(t.invested, 'usd'), barPct: bar(t.invested), barColor: 'var(--tiger)', graphLabel: `${pctOf(t.invested).toFixed(1)}% of contributed`, sub: `Total contributed ${this.fmt.transform(t.contributed, 'usd')}` },
+        { label: 'Unrealised', value: this.fmt.transform(t.unrealised, 'signed'), valueClass: signClass(t.unrealised), barPct: bar(t.unrealised), barColor: 'var(--green)', graphLabel: `${signed(pctOf(t.unrealised))} of contributed`, graphLabelClass: signClass(t.unrealised), sub: `${signed(pctOf(t.unrealised))} of total contributed`, subClass: signClass(t.unrealised) },
+        { label: 'Realised', value: this.fmt.transform(t.realised, 'signed'), valueClass: signClass(t.realised), barPct: bar(t.realised), barColor: 'var(--green)', graphLabel: `${signed(pctOf(t.realised))} of contributed`, graphLabelClass: signClass(t.realised), sub: `${signed(pctOf(t.realised))} of total contributed`, subClass: signClass(t.realised) },
+        { label: 'Total with profit', value: this.fmt.transform(t.totalWithProfit, 'usd'), barPct: bar(t.totalWithProfit), barColor: 'var(--gold)', graphLabel: `${signed(profitPct)} on contributed`, graphLabelClass: signClass(profitPct), sub: `${signed(profitPct)} on total contributed, before expenses`, subClass: signClass(profitPct) },
       ];
     }
+    const equity = t.invested + t.unrealised;
     return [
-      { label: 'Invested', value: this.fmt.transform(t.invested, 'usd'), barPct: 49, barColor: 'var(--ibkr)', graphLabel: '49.3% of total amount', sub: 'of $13,916.16 total amount' },
-      { label: 'Unrealised', value: this.fmt.transform(t.unrealised, 'signed'), valueClass: 'neg', barPct: 12, barColor: 'var(--red)', graphLabel: '−1.71% of total amount', graphLabelClass: 'neg', sub: '−1.71% of total amount', subClass: 'neg' },
-      { label: 'Realised', value: this.fmt.transform(t.realised, 'usd'), barPct: 6, barColor: 'var(--muted)', graphLabel: 'No sales yet', sub: 'No sales yet' },
-      { label: 'Account value', value: this.fmt.transform(t.totalWithProfit, 'usd'), barPct: 98, barColor: 'var(--ibkr)', graphLabel: 'Equity + cash', sub: 'Equity $6,628 + cash $7,051' },
+      { label: 'Invested', value: this.fmt.transform(t.invested, 'usd'), barPct: bar(t.invested), barColor: 'var(--ibkr)', graphLabel: `${pctOf(t.invested).toFixed(1)}% of total amount`, sub: `of ${this.fmt.transform(t.contributed, 'usd')} total amount` },
+      { label: 'Unrealised', value: this.fmt.transform(t.unrealised, 'signed'), valueClass: signClass(t.unrealised), barPct: bar(t.unrealised), barColor: 'var(--red)', graphLabel: `${signed(pctOf(t.unrealised))} of total amount`, graphLabelClass: signClass(t.unrealised), sub: `${signed(pctOf(t.unrealised))} of total amount`, subClass: signClass(t.unrealised) },
+      { label: 'Realised', value: this.fmt.transform(t.realised, 'usd'), valueClass: t.realised === 0 ? undefined : signClass(t.realised), barPct: bar(t.realised), barColor: t.realised === 0 ? 'var(--muted)' : 'var(--green)', graphLabel: t.realised === 0 ? 'No sales yet' : `${signed(pctOf(t.realised))} of total amount`, sub: t.realised === 0 ? 'No sales yet' : `${signed(pctOf(t.realised))} of total amount` },
+      { label: 'Account value', value: this.fmt.transform(t.totalWithProfit, 'usd'), barPct: bar(t.totalWithProfit), barColor: 'var(--ibkr)', graphLabel: 'Equity + cash', sub: `Equity ${this.fmt.transform(equity, 'usd')} + cash ${this.fmt.transform(t.cash, 'usd')}` },
     ];
   }
 }

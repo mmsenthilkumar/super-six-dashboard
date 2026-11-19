@@ -73,11 +73,11 @@ function readBroker(ss, tabName, isTiger) {
   totals.cash = side.cash; totals.cashPct = side.cashPct; totals.equityPct = side.equityPct;
   totals.contributed = side.contributed;
   totals.expenses = side.expenses || 0;
-  if (isTiger) {
-    totals.totalWithProfit = side.totalWithProfit || round2(122865.31 + (side.expenses || 5068));
-  } else {
-    totals.totalWithProfit = round2(totals.invested + totals.unrealised + side.cash);
-  }
+  // Total With Profit as the sheet defines it: invested + unrealised + cash
+  // + expenses. Prefer the sheet's own "Total With Profit (USD)" label; if
+  // it is missing, compute it from the live figures — never a typed-in number.
+  totals.totalWithProfit = side.totalWithProfit ||
+    round2(totals.invested + totals.unrealised + side.cash + (side.expenses || 0));
   return { rows: rows, totals: totals };
 }
 
@@ -89,8 +89,11 @@ function readSideTotals(ss, tabName, isTiger) {
     cash: num(values[1][12]),
     cashPct: round2(num(values[1][13]) * 100),
     equityPct: round2(num(values[1][14]) * 100),
-    contributed: isTiger ? 100782.50 : 13916.16,
-    expenses: isTiger ? 5068 : 0,
+    // Defaults are 0 — the loop below fills contributed/expenses from the
+    // sheet's own labels ("Total Amount" / "Investment Amount (USD)" /
+    // "Total Expenses / Distribution (USD)"). No typed-in amounts here.
+    contributed: 0,
+    expenses: 0,
     totalWithProfit: 0
   };
   for (var i = 0; i < values.length; i++) {

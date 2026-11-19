@@ -14,7 +14,6 @@ import type { ChallengeMeta } from '../../core/models/portfolio.models';
 })
 export class ChallengeHeroComponent {
   @Input({ required: true }) challenge!: ChallengeMeta;
-  @Input() dataSource = 'static';
   @Output() refresh = new EventEmitter<void>();
   protected prefs = inject(UiPreferencesService);
 

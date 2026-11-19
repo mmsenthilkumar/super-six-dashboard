@@ -9,8 +9,9 @@ import { UiPreferencesService } from './core/services/ui-preferences.service';
 
 /**
  * Top-level shell: hero + tabs + footer.
- * Data comes from PortfolioDataService (static Wednesday 18 Nov 2026 snapshot
- * until APPS_SCRIPT_DATA_URL is configured — then live, refreshed every 15 min).
+ * Data comes from PortfolioDataService — live from the sheet only, refreshed
+ * every 15 min. If the fetch fails the page stays empty (no stale snapshot
+ * is ever shown); the empty state offers a retry.
  */
 @Component({
   selector: 'app-root',

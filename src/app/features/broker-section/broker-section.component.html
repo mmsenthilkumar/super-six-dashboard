@@ -1,7 +1,7 @@
 <section class="broker" [attr.aria-labelledby]="'h-' + snapshot.key">
   <div class="broker-head">
     <div>
-      <span class="broker-tag" [class.tag-tiger]="snapshot.key === 'tiger'" [class.tag-ibkr]="snapshot.key === 'ibkr'" [id]="'h-' + snapshot.key">{{ snapshot.tag }}</span><app-info-popover [popoverId]="snapshot.key + '-info'" [label]="'About the ' + snapshot.key + ' list'" [text]="snapshot.info" />
+      <span class="broker-tag" [class.tag-tiger]="snapshot.key === 'tiger'" [class.tag-ibkr]="snapshot.key === 'ibkr'" [id]="'h-' + snapshot.key">{{ snapshot.tag }}</span>
     </div>
     <button type="button" class="broker-logo" [class.broker-logo-tiger]="snapshot.key === 'tiger'" [class.broker-logo-ibkr]="snapshot.key === 'ibkr'"
       [attr.aria-expanded]="showHoldings" [attr.aria-controls]="'holdings-' + snapshot.key"

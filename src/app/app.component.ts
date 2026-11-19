@@ -28,8 +28,10 @@ export class AppComponent implements OnInit, OnDestroy {
    *  as the refresh button — re-fetches sheet data, reloads only if a new
    *  build is live. A plain browser reload would drop tab/scroll/font and
    *  can land on the Access sign-in if the 24h session expired, so the
-   *  custom gesture (with overscroll-behavior disabled in styles.scss)
-   *  replaces the browser's native pull-to-refresh.
+   *  custom gesture replaces the browser's native pull-to-refresh
+   *  (native PTR is suppressed by preventDefault once the pull engages;
+   *  overscroll-behavior was tried and REMOVED 20 Nov 2026 — it was a
+   *  suspect when scrolling stayed broken after the v1.0.1 threshold fix).
    *
    *  FIX 20 Nov 2026: the first version grabbed EVERY downward touch at
    *  the top of the page and called preventDefault() on the first move

@@ -30,17 +30,17 @@ h1 .gold{color:var(--gold)}
 .progress-note{color:var(--muted);font-size:.64rem;margin-top:3px;font-weight:600}
 .milestone-graph{margin-top:6px;background:#e8f1ef;border:1px solid #c9ddd9;border-radius:8px;padding:6px 8px}
 .mg-head{display:flex;justify-content:space-between;align-items:baseline;font-size:.58rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.mg-head .now{color:var(--teal);letter-spacing:0;text-transform:none;font-size:.64rem}
+.mg-head .now{color:#14b8a6;letter-spacing:0;text-transform:none;font-size:.64rem}
 .mg-chart-wrap{position:relative;margin-top:1px}
 .mg-chart{display:block;width:100%;height:30px;overflow:visible}
 .mg-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:7px;height:7px;border-radius:1px;background:#fff;border:1.6px solid #94a3b8;box-sizing:border-box}
-.mg-marker.done{width:9px;height:9px;background:var(--green);border:1.4px solid #fff;box-shadow:0 0 0 1px #b9d8c6}
-.mg-marker.now{width:10px;height:10px;background:var(--teal);border:1.4px solid #fff;box-shadow:0 0 0 1px var(--teal)}
-.mg-marker.final{border-color:var(--teal)}
+.mg-marker.done{width:9px;height:9px;background:#16a34a;border:1.4px solid #fff;box-shadow:0 0 0 1px #b9d8c6}
+.mg-marker.now{width:10px;height:10px;background:#14b8a6;border:1.4px solid #fff;box-shadow:0 0 0 1px #14b8a6}
+.mg-marker.final{border-color:#14b8a6}
 .mg-labels{display:flex;justify-content:space-between;font-size:.58rem;font-weight:700;color:var(--muted);line-height:1;padding:0 1px}
 .mg-labels b{color:var(--ink);font-weight:800}
 .mg-labels .done{color:var(--green);font-weight:800}
-.mg-labels .now-lbl{color:var(--teal);font-weight:800}
+.mg-labels .now-lbl{color:#14b8a6;font-weight:800}
 @media (max-width:760px){
   .hero{padding:9px 9px 6px;border-radius:9px}
   .hero-top{flex-direction:column}

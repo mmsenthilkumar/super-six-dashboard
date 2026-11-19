@@ -13,8 +13,8 @@
 .refresh-btn svg{width:16px;height:16px;display:block}
 .hero-top > div:first-child{flex:1 1 420px;min-width:0}
 .group-name{display:flex;align-items:center;gap:7px;font-size:.58rem;font-weight:800;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
-.group-icon{width:26px;height:26px;border-radius:7px;flex:none}
-h1{margin:1px 0;font-size:clamp(.84rem,2vw,1.12rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.group-icon{width:20px;height:20px;border-radius:5px;flex:none}
+h1{margin:1px 0;font-size:clamp(.78rem,1.8vw,1.02rem);line-height:1.15;font-weight:800;letter-spacing:-.02em}
 h1 .gold{color:var(--gold)}
 .hero-sub{color:var(--muted);font-weight:600;font-size:.7rem;display:inline}
 .currency-badge{display:inline-flex;align-items:center;gap:4px;margin-left:6px;vertical-align:1px;background:var(--gold-soft);border:1px solid #e8d5a8;color:#7a5205;font-size:.6rem;font-weight:800;letter-spacing:.02em;padding:1px 6px;border-radius:99px;white-space:nowrap}
@@ -50,7 +50,7 @@ h1 .gold{color:var(--gold)}
   .refresh-btn{width:28px;height:28px;min-height:28px}.refresh-btn svg{width:14px;height:14px}
   .hero-top > div:first-child{flex:none;min-width:0}
   .group-name{font-size:.5rem}
-  h1{font-size:clamp(.76rem,3.8vw,.92rem);white-space:nowrap;overflow:visible;text-overflow:clip}
+  h1{font-size:clamp(.7rem,3.4vw,.84rem)}
   .hero-sub{font-size:.6rem}.currency-badge{margin-left:4px;font-size:.54rem;padding:0 5px}
   .month-chip{display:flex;align-items:baseline;gap:6px;text-align:left}
   .month-chip .big{font-size:.8rem;white-space:nowrap}.month-chip .lbl{font-size:.55rem;white-space:nowrap}

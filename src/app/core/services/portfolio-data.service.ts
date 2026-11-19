@@ -29,7 +29,7 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * — that is automatic and cannot be forgotten; the version number is for
  * humans to track.
  */
-export const APP_VERSION = '1.0.2';
+export const APP_VERSION = '1.0.3';
 
 export type DataSource = 'static' | 'live' | 'live-fallback';
 

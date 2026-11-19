@@ -11,7 +11,7 @@ import type { BrokerSnapshot, BrokerTotals, ChallengeMeta, HoldingRow, Portfolio
  * this URL, and if the fetch fails the page stays empty (no stale snapshot
  * is shown — that behaviour was removed 20 Nov 2026 at Senthil's direction).
  */
-export const APPS_SCRIPT_DATA_URL = 'https://script.google.com/macros/s/AKfycbzjC2l9y3_2JkWgzhnrY9y_0Z88Fl2XrqmhEiY-fs0XCP9FkadYrP4OpctqLiztHjOvwA/exec';
+export const APPS_SCRIPT_DATA_URL = 'https://script.google.com/macros/s/AKfycbxhKB-dXE0-HiDGe2xQUkIiiUTd1QIWMa43qoZBLRMe5XopKTHFiykB0LRXiQmXjMp6Mg/exec';
 
 /** Auto-refresh interval: fetch on load, then every 15 minutes. */
 export const AUTO_REFRESH_MS = 15 * 60 * 1000;
@@ -25,15 +25,15 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * 1.0.1 pull-to-refresh scroll fix, 1.0.2 live milestone graph + brighter
  * colours, 1.0.3 overscroll-behavior removal, 1.0.4 (never deployed —
  * push declined) show % P/L in ticker rows, 1.0.5 same % P/L change +
- * closed positions HIDDEN at display (the removal was implemented after
- * that push had already read its files), 1.0.6 closed positions removed
- * from the list itself + hardcoded snapshot dropped, empty page on
- * refresh failure. The update check itself still compares the main-*.js
+ * closed positions removed from the list itself, 1.0.6 hardcoded
+ * snapshot dropped, empty page on refresh failure, 1.0.7 redeployed
+ * Apps Script URL + weight normalisation (see below). The update check
+ * itself still compares the main-*.js
  * hash — that is automatic and cannot be forgotten; the version number
  * is for humans to track. (The page itself stays "Super Six"; S6D is
  * the Android app's name.)
  */
-export const APP_VERSION = '1.0.6';
+export const APP_VERSION = '1.0.7';
 
 export type DataSource = 'loading' | 'live' | 'error';
 
@@ -82,7 +82,15 @@ function buildSnapshot(
   notes?: string[],
   noteInfo?: string,
 ): BrokerSnapshot {
-  const open = allRows.filter((r) => r.shares > 0);
+  // Weights arrive from the sheet as FRACTIONS (AVGO 0.0887 = 8.87%) while
+  // the app displays them as percents — since live data went on, "Top
+  // holdings" showed them 100x too small (0.09% instead of 8.87%).
+  // Normalise: if the largest weight is under 1, the column is fractional.
+  const maxWeight = Math.max(0, ...allRows.map((r) => r.weight));
+  const rows = maxWeight > 0 && maxWeight < 1
+    ? allRows.map((r) => ({ ...r, weight: r.weight * 100 }))
+    : allRows;
+  const open = rows.filter((r) => r.shares > 0);
   const totals: BrokerTotals = {
     ...totalsIn,
     // Profit on contributed: (unrealised + realised) ÷ contributed.

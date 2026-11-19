@@ -18,8 +18,9 @@
       </div>
     }
   </div>
-  <footer>{{ dataSvc.data().snapshotLabel }} · USD
-    @if (dataSvc.source() === 'live' && dataSvc.lastUpdated()) { <span>· Live Data as on {{ dataSvc.lastUpdated() | date:'d MMM y, h:mm a' }}</span> }
-    @if (dataSvc.source() === 'live-fallback') { <span>· Live failed, showing saved snapshot</span> }
+  <footer>
+    @if (dataSvc.source() === 'live' && dataSvc.lastUpdated()) { <span>Live Data as on {{ dataSvc.lastUpdated() | date:'d MMM y, h:mm a' }}</span> }
+    @if (dataSvc.source() === 'live-fallback') { <span>Live failed, showing saved snapshot</span> }
+    @if (dataSvc.source() === 'static') { <span>{{ dataSvc.data().snapshotLabel }} · USD</span> }
   </footer>
 </div>

@@ -29,32 +29,53 @@ export class AppComponent implements OnInit, OnDestroy {
    *  build is live. A plain browser reload would drop tab/scroll/font and
    *  can land on the Access sign-in if the 24h session expired, so the
    *  custom gesture (with overscroll-behavior disabled in styles.scss)
-   *  replaces the browser's native pull-to-refresh. */
+   *  replaces the browser's native pull-to-refresh.
+   *
+   *  FIX 20 Nov 2026: the first version grabbed EVERY downward touch at
+   *  the top of the page and called preventDefault() on the first move
+   *  event, which swallowed normal scrolling. Now it only takes over
+   *  once the pull is clearly intentional (past PTR_ARM_PX), and it
+   *  checks the real scroller (scrollingElement, not just window.scrollY)
+   *  so a page that can still scroll up never triggers the gesture. */
   protected ptrY = signal(0);
   protected ptrState = signal<'idle' | 'pulling' | 'ready' | 'refreshing'>('idle');
   private ptrStartY = 0;
   private ptrTracking = false;
+  private ptrEngaged = false;
   private ptrRefreshTimer: ReturnType<typeof setTimeout> | null = null;
   private static readonly PTR_THRESHOLD = 64;
+  private static readonly PTR_ARM_PX = 12;
+
+  private atTop(): boolean {
+    if (typeof window === 'undefined' || typeof document === 'undefined') return false;
+    const el = document.scrollingElement ?? document.documentElement;
+    return window.scrollY <= 0 && (el?.scrollTop ?? 0) <= 0;
+  }
 
   private onTouchStart = (e: TouchEvent): void => {
     if (this.ptrState() === 'refreshing' || e.touches.length !== 1) return;
-    if (window.scrollY > 0) return;
+    if (!this.atTop()) return;
     this.ptrTracking = true;
+    this.ptrEngaged = false;
     this.ptrStartY = e.touches[0].clientY;
   };
 
   private onTouchMove = (e: TouchEvent): void => {
     if (!this.ptrTracking || e.touches.length !== 1) return;
     const dy = e.touches[0].clientY - this.ptrStartY;
-    if (dy <= 0 || window.scrollY > 0) {
+    if (dy <= 0 || !this.atTop()) {
+      // Scrolling the page (or no longer at the top): hand back to native scroll.
       this.ptrTracking = false;
+      this.ptrEngaged = false;
       this.ptrY.set(0);
       this.ptrState.set('idle');
       return;
     }
+    // Don't steal the gesture for tiny jitters — let native scroll decide.
+    if (!this.ptrEngaged && dy < AppComponent.PTR_ARM_PX) return;
+    this.ptrEngaged = true;
     e.preventDefault();
-    const y = Math.min(dy * 0.5, 96);
+    const y = Math.min((dy - AppComponent.PTR_ARM_PX) * 0.5, 96);
     this.ptrY.set(y);
     this.ptrState.set(y >= AppComponent.PTR_THRESHOLD ? 'ready' : 'pulling');
   };
@@ -62,6 +83,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private onTouchEnd = (): void => {
     if (!this.ptrTracking) return;
     this.ptrTracking = false;
+    this.ptrEngaged = false;
     if (this.ptrState() === 'ready') {
       this.ptrState.set('refreshing');
       this.ptrY.set(56);

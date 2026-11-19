@@ -31,7 +31,7 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * to track. (The page itself stays "Super Six"; S6D is the Android
  * app's name.)
  */
-export const APP_VERSION = '1.0.0';
+export const APP_VERSION = '1.0.1';
 
 export type DataSource = 'static' | 'live' | 'live-fallback';
 

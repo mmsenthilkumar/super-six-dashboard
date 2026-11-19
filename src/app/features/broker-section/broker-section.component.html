@@ -24,7 +24,7 @@
         (chipsChange)="chips = $event" (sortChange)="sort = $event" />
       <div class="table-wrap">
         <table [attr.aria-label]="snapshot.name + ' holdings'">
-          <thead><tr><th>Ticker</th><th>Price (USD)</th><th>Shares</th><th>Invested (USD)</th><th>Unrealised (USD)</th><th>Unreal. %</th><th>Weight</th></tr></thead>
+          <thead><tr><th>Ticker</th><th>Price (USD)</th><th>Shares</th><th>Invested (USD)</th><th>Unrealised (USD)</th><th>Unreal. %</th></tr></thead>
           <tbody>
             @for (row of visibleRows; track row.ticker) {
               <tr [class]="rowClass(row)">
@@ -37,10 +37,9 @@
                 <td>{{ row.invested | portfolioFormat:'usd2' }}</td>
                 <td [class.pos]="row.unrealised > 0" [class.neg]="row.unrealised < 0">{{ row.unrealised | portfolioFormat:'signed2' }}</td>
                 <td [class.pos]="row.unrealised > 0" [class.neg]="row.unrealised < 0">{{ unrealPct(row) }}</td>
-                <td>{{ row.weight | portfolioFormat:'pct':2 }}</td>
                 <td class="m-cell">
                   <span class="m-main" [class.pos]="row.unrealised > 0" [class.neg]="row.unrealised < 0">{{ row.unrealised | portfolioFormat:'signed' }}</span>
-                  <span class="m-sub">{{ row.invested | portfolioFormat:'usd' }} invested · {{ row.weight | portfolioFormat:'pct':2 }}</span>
+                  <span class="m-sub">{{ row.invested | portfolioFormat:'usd' }} invested · <span [class.pos]="row.unrealised > 0" [class.neg]="row.unrealised < 0">{{ unrealPct(row) }}</span></span>
                 </td>
               </tr>
             }

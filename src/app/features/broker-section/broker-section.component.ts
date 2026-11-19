@@ -28,6 +28,9 @@ export class BrokerSectionComponent {
   private fmt = new PortfolioFormatPipe();
 
   protected get visibleRows(): HoldingRow[] {
+    // No closed-row filter here: closed positions are removed from the list
+    // itself when the data loads (portfolio-data.service), so this list
+    // only ever holds open positions.
     const filtered = this.dataSvc.filterByChips(this.snapshot.rows, this.chips);
     return this.dataSvc.sortedRows(filtered, this.sort);
   }

@@ -31,7 +31,7 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * to track. (The page itself stays "Super Six"; S6D is the Android
  * app's name.)
  */
-export const APP_VERSION = '1.0.3';
+export const APP_VERSION = '1.0.5';
 
 export type DataSource = 'static' | 'live' | 'live-fallback';
 
@@ -118,8 +118,8 @@ export const STATIC_SNAPSHOT: PortfolioData = {
     key: 'tiger',
     name: 'Tiger — US Markets (USD)',
     tag: 'Tiger — US Markets (USD)',
-    info: '67 tickers listed, 57 currently held and 10 closed / zero-share positions, kept for their realised P/L. All amounts in USD.',
-    rows: TIGER_ROWS,
+    info: '57 tickers currently held. Closed / zero-share positions are not listed; their realised P/L stays in the totals. All amounts in USD.',
+    rows: TIGER_ROWS.filter((r) => r.shares > 0),
     totals: {
       invested: 97475.07, unrealised: 12901.2, realised: 14249.61,
       totalWithProfit: 127933.31, cash: 12489.04, cashPct: 4.89, equityPct: 95.11,
@@ -181,9 +181,14 @@ export const STATIC_SNAPSHOT: PortfolioData = {
 
 function snapshotFromResponse(res: PortfolioResponse): PortfolioData {
   const base = STATIC_SNAPSHOT;
+  // Closed / zero-share positions are REMOVED from the list itself here (not
+  // merely hidden at display): the rows the app holds contain only open
+  // positions. Their realised P/L stays counted — totals come from the
+  // sheet totals row, not from these rows. held/closed counts still
+  // describe the source data, so the removal stays visible in the numbers.
   const merge = (snap: BrokerSnapshot, part: { rows: HoldingRow[]; totals: any }): BrokerSnapshot => ({
     ...snap,
-    rows: part.rows,
+    rows: part.rows.filter((r) => r.shares > 0),
     totals: { ...snap.totals, ...part.totals },
     heldCount: part.rows.filter((r) => r.shares > 0).length,
     closedCount: part.rows.filter((r) => r.shares === 0).length,
@@ -193,6 +198,7 @@ function snapshotFromResponse(res: PortfolioResponse): PortfolioData {
       .slice(0, 5)
       .map((r) => ({ ticker: r.ticker, label: `${r.weight.toFixed(2)}% · ${r.unrealised >= 0 ? '+' : '−'}$${Math.abs(Math.round(r.unrealised)).toLocaleString()}`, value: r.unrealised })),
     biggestMovers: [...part.rows]
+      .filter((r) => r.shares > 0)
       .sort((a, b) => Math.abs(b.unrealised) - Math.abs(a.unrealised))
       .slice(0, 7)
       .map((r) => ({ ticker: r.ticker, label: `${r.unrealised >= 0 ? '+' : '−'}$${Math.abs(Math.round(r.unrealised)).toLocaleString()}`, value: r.unrealised })),

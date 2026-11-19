@@ -254,8 +254,20 @@ export class PortfolioDataService {
       });
   }
 
-  /** Manual refresh (the refresh icon button). Re-fetches if a URL is configured, else re-applies the static snapshot. */
+  /**
+   * Manual refresh (the refresh icon button). Does a full page reload, not
+   * just a data re-fetch: a data-only refresh leaves the currently loaded
+   * bundle in place, so after a new deploy the page never updated until
+   * the app was closed and reopened. A reload picks up the latest build
+   * from Pages AND fresh sheet data on load (the app fetches on load).
+   * The ?v= timestamp busts the WebView/page cache so the new index.html
+   * is actually fetched. Auto-refresh (15 min) stays data-only on purpose.
+   */
   refresh(): void {
+    if (this.isBrowser && typeof window !== 'undefined') {
+      window.location.href = window.location.pathname + '?v=' + Date.now();
+      return;
+    }
     this.fetchFromSheet();
   }
 

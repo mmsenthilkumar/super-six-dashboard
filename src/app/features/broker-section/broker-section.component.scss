@@ -36,8 +36,6 @@ tbody tr:last-child td{border-bottom:none}
 .m-cell{display:none}
 .zero td{opacity:.55}
 .closed-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:2px;color:var(--muted);text-transform:uppercase}
-tfoot td{text-align:right;font-weight:800;padding:7px;border-top:2px solid var(--line);white-space:nowrap}
-tfoot td:first-child{text-align:left}
 .empty-msg{padding:16px;text-align:center;color:var(--muted);font-weight:700}
 .pos{color:var(--green)} .neg{color:var(--red)}
 @media (max-width:760px){

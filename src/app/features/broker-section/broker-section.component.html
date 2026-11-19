@@ -45,17 +45,6 @@
               </tr>
             }
           </tbody>
-          <tfoot>
-            <tr>
-              <td data-l="">Totals</td>
-              <td data-l="Price"></td>
-              <td data-l="Shares"></td>
-              <td data-l="Invested">{{ snapshot.totals.invested | portfolioFormat:'usd2' }}</td>
-              <td data-l="Unrealised">{{ snapshot.totals.unrealised | portfolioFormat:'signed2' }}</td>
-              <td data-l="Unreal. %"></td>
-              <td data-l="Weight">{{ snapshot.totals.equityPct | portfolioFormat:'pct':2 }}</td>
-            </tr>
-          </tfoot>
         </table>
         @if (!visibleRows.length) { <div class="empty-msg">No tickers match that search.</div> }
       </div>

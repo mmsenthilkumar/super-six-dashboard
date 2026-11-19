@@ -1,7 +1,7 @@
 /* Responsive table-to-card rules (@media max-width: 760px) — ported from the prototype. */
 @media (max-width: 760px) {
   .table-wrap { padding: 4px 6px 8px; overflow: visible; }
-  table, tbody, tfoot { display: block; width: 100%; }
+  table, tbody { display: block; width: 100%; }
   thead { display: none; }
   tbody tr { display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px solid var(--line); border-radius: 7px; margin-bottom: 3px; padding: 4px 8px; background: var(--surface2); min-height: 38px; }
   tbody tr.gain { background: #eef6f1; border-color: #c6dfcf; }
@@ -19,14 +19,6 @@
   .m-main.neg { background: var(--red-soft); }
   .m-sub { font-size: .6rem; font-weight: 600; color: var(--muted); line-height: 1.25; white-space: nowrap; }
   .closed-badge { font-size: .52rem; padding: 0 4px; margin-left: 4px; }
-  tfoot { display: block; }
-  tfoot tr { display: block; border-top: 2px solid var(--line); padding: 4px 4px 0; margin-top: 1px; }
-  tfoot td { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-top: none; padding: 2px 4px; white-space: normal; text-align: right; font-size: .76rem; }
-  tfoot td::before { content: attr(data-l); font-size: .58rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); text-align: left; }
-  tfoot td:first-child { justify-content: flex-start; text-align: left; font-size: .7rem; }
-  tfoot td:first-child::before { content: ""; display: none; }
-  tfoot td[data-l=""] { display: none; }
-  tfoot td:first-child[data-l] { display: flex; }
 }
 @media (max-width: 380px) {
   .m-main { font-size: .72rem; }

@@ -1,0 +1,14 @@
+<div class="tabs-shell">
+  <div class="switcher" role="tablist" aria-label="Choose which broker to view">
+    @for (t of tabs; track t.id) {
+      <button type="button" role="tab" [id]="'tab-' + t.id" [attr.data-view]="t.id"
+        [attr.aria-selected]="prefs.activeTab() === t.id" [attr.aria-controls]="'panel-' + t.id"
+        [attr.tabindex]="prefs.activeTab() === t.id ? 0 : -1" (click)="prefs.setTab(t.id)">
+        @if (t.id === 'both') { <span class="sw-logo sw-logo-both" aria-hidden="true"><i></i><i></i></span> }
+        @if (t.id === 'tiger') { <span class="sw-logo sw-logo-tiger" aria-hidden="true">T</span> }
+        @if (t.id === 'ibkr') { <span class="sw-logo sw-logo-ibkr" aria-hidden="true">IB</span> }
+        {{ t.label }}
+      </button>
+    }
+  </div>
+</div>

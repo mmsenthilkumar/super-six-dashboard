@@ -1,0 +1,21 @@
+.tabs-shell{margin-top:16px}
+.switcher{display:flex;gap:6px;align-items:flex-end;margin:0;width:100%;flex-wrap:nowrap;background:transparent;border:none;border-bottom:2px solid var(--line);border-radius:0;padding:0 14px;position:relative;z-index:1}
+.switcher [role="tab"]{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);border-bottom:none;background:#e9eef4;color:#7a8aa0;font:inherit;font-weight:700;font-size:.80rem;line-height:1;border-radius:10px 10px 0 0;padding:11px 18px 12px;cursor:pointer;min-height:2.55rem;white-space:nowrap;margin-bottom:-2px;box-shadow:inset 0 -3px 6px rgba(15,22,34,.04)}
+.switcher [role="tab"]:hover{color:var(--ink);background:#dde6ef}
+.sw-logo{width:17px;height:17px;border-radius:4px;display:inline-grid;place-items:center;font-size:.54rem;font-weight:900;color:#fff;flex:none;line-height:1;opacity:.85}
+.sw-logo-tiger{background:#f59e0b}.sw-logo-ibkr{background:#d9232e;font-size:.46rem}
+.sw-logo-both{background:transparent;width:23px;position:relative;opacity:1}
+.sw-logo-both i{position:absolute;width:15px;height:15px;border-radius:4px;display:block}
+.sw-logo-both i:first-child{left:0;top:1px;background:#f59e0b}
+.sw-logo-both i:last-child{right:0;top:1px;background:#d9232e;border:1.5px solid #fff;box-sizing:border-box}
+.switcher [role="tab"][aria-selected="true"]{background:var(--surface);color:var(--ink);font-weight:800;border-bottom:2px solid var(--surface);box-shadow:inset 0 3px 0 var(--gold),0 -2px 6px rgba(15,22,34,.05);z-index:2}
+.switcher [role="tab"][data-view="both"][aria-selected="true"]{box-shadow:inset 0 3px 0 var(--ink),0 -2px 6px rgba(15,22,34,.05)}
+.switcher [role="tab"][data-view="tiger"][aria-selected="true"]{box-shadow:inset 0 3px 0 #0b5fa5,0 -2px 6px rgba(15,22,34,.05)}
+.switcher [role="tab"][data-view="ibkr"][aria-selected="true"]{box-shadow:inset 0 3px 0 #d9232e,0 -2px 6px rgba(15,22,34,.05)}
+@media (max-width:760px){
+  .tabs-shell{margin-top:12px}
+  .switcher{gap:4px;padding:0 6px}
+  .switcher [role="tab"]{padding:9px 10px 10px;font-size:.68rem;min-height:2.3rem;flex:1 1 0;gap:5px;border-radius:8px 8px 0 0}
+  .sw-logo{width:14px;height:14px;font-size:.46rem}.sw-logo-ibkr{font-size:.38rem}
+  .sw-logo-both{width:19px}.sw-logo-both i{width:12px;height:12px}
+}

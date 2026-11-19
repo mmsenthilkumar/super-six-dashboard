@@ -1,0 +1,14 @@
+@use 'styles/tokens';
+@use 'styles/mobile-cards';
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { max-width: 100%; overflow-x: hidden; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+img, svg { max-width: 100%; }
+.mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+button, [role="button"], select, summary, input:not([type="checkbox"], [type="radio"]) { min-height: 2.25rem; }
+a { color: var(--tiger); }
+.pos { color: var(--green); }
+.neg { color: var(--red); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

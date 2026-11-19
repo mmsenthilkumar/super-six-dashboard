@@ -1,0 +1,25 @@
+<div class="wrap" [style.font-size]="prefs.fontScalePct()">
+  <app-challenge-hero [challenge]="dataSvc.data().challenge" [dataSource]="dataSvc.source()" (refresh)="dataSvc.refresh()" />
+  <app-broker-tabs />
+  <div class="tab-panels">
+    @if (prefs.activeTab() === 'both') {
+      <div class="tab-panel" id="panel-both" role="tabpanel" aria-labelledby="tab-both">
+        <app-combined-overview [data]="dataSvc.data()" />
+      </div>
+    }
+    @if (prefs.activeTab() === 'tiger') {
+      <div class="tab-panel" id="panel-tiger" role="tabpanel" aria-labelledby="tab-tiger">
+        <app-broker-section [snapshot]="dataSvc.data().tiger" />
+      </div>
+    }
+    @if (prefs.activeTab() === 'ibkr') {
+      <div class="tab-panel" id="panel-ibkr" role="tabpanel" aria-labelledby="tab-ibkr">
+        <app-broker-section [snapshot]="dataSvc.data().ibkr" />
+      </div>
+    }
+  </div>
+  <footer>{{ dataSvc.data().snapshotLabel }} · USD
+    @if (dataSvc.source() === 'live') { <span>· Live from sheet</span> }
+    @if (dataSvc.source() === 'live-fallback') { <span>· Live failed, showing saved snapshot</span> }
+  </footer>
+</div>

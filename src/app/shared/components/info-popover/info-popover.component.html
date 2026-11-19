@@ -1,0 +1,4 @@
+<span class="info-wrap" [class.flip]="flip === 'flip'" [class.flip-l]="flip === 'flip-l'">
+  <button type="button" class="info-btn" [attr.aria-expanded]="open" [attr.aria-label]="label" (click)="toggle($event)">i</button>
+  <span class="info-pop" [hidden]="!open" (click)="$event.stopPropagation()">{{ text }}</span>
+</span>

@@ -1,0 +1,6 @@
+.split{min-width:230px;flex:1;max-width:340px}
+.split .lbls{display:flex;justify-content:space-between;font-size:.74rem;font-weight:800;margin-bottom:4px}
+.splitbar{display:flex;height:9px;border-radius:99px;overflow:hidden;background:var(--bar-track)}
+.splitbar .eq{background:var(--green)} .splitbar .cash{background:var(--gold)}
+.split .sub{margin-top:6px;color:var(--muted);font-size:.7rem;font-weight:700}
+@media (max-width:760px){.split{min-width:0;width:100%;max-width:none;flex:none}.split .lbls{font-size:.68rem;margin-bottom:3px}.splitbar{height:8px}}

@@ -1,0 +1,52 @@
+.broker{position:relative;margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+.broker-head{padding:13px 16px 0;display:flex;flex-wrap:wrap;gap:6px 10px;justify-content:flex-start;align-items:center}
+.broker-head > div{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:0}
+.broker-logo{position:relative;z-index:2;display:inline-flex;align-items:center;justify-content:center;gap:8px;flex:none;line-height:1;padding:4px 7px 4px 11px;border:1px solid var(--line);border-radius:10px;background:var(--surface2);cursor:pointer;font:inherit;vertical-align:middle;margin-left:auto}
+.broker-logo:hover{background:#dfe8f2}
+.broker-logo[aria-expanded="true"]{background:var(--ink);border-color:var(--ink)}
+.broker-logo-icon{position:relative;display:block;flex:none;line-height:0}
+.broker-logo-icon > svg{display:block;height:38px;width:38px;filter:drop-shadow(0 1px 2px rgba(15,22,34,.18))}
+.ibkr-badge{display:inline-grid;place-items:center;height:38px;width:38px;border-radius:8px;background:#d9232e;color:#fff;font-weight:900;font-size:.9rem;filter:drop-shadow(0 1px 2px rgba(15,22,34,.18))}
+.broker-chevron-badge{position:absolute;right:-6px;bottom:-6px;width:17px;height:17px;border-radius:50%;background:var(--ink);color:#fff;border:1.5px solid #fff;box-shadow:0 1px 4px rgba(15,22,34,.3);display:grid;place-items:center;transition:transform .18s ease;z-index:1;pointer-events:none}
+.broker-chevron-badge svg{display:block;width:10px;height:10px}
+.broker-logo[aria-expanded="true"] .broker-chevron-badge{transform:rotate(180deg);background:#fff;color:var(--ink);border-color:var(--ink)}
+.broker-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.11em;padding:3px 8px;border-radius:5px;text-transform:uppercase}
+.tag-tiger{background:#fef3c7;color:#92400e;border:1px solid #f59e0b}
+.tag-ibkr{background:#fee2e2;color:#991b1b;border:1px solid #d9232e}
+.broker-summary{border-top:1px solid var(--line);margin-top:2px;padding-bottom:8px}
+.broker-summary app-equity-cash-split{display:block;padding:10px 16px 2px}
+.broker-summary app-stat-grid{display:block;padding:10px 16px 2px}
+.highlights{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:9px 16px 2px;border-top:1px solid var(--line);margin:4px 16px 0;padding:11px 0 13px}
+.hl{border:1px solid #cbd6e3;border-radius:8px;padding:8px 11px;background:var(--surface2)}
+.hl h3{margin:0 0 4px;font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.hl ul{margin:0;padding:0;list-style:none}
+.hl li{display:flex;justify-content:space-between;gap:10px;padding:2px 0;font-size:.8rem;font-weight:700}
+.hl li .t{font-weight:800}
+.table-wrap{padding:6px 10px 12px}
+table{width:100%;border-collapse:collapse;font-size:.8rem}
+thead th{text-align:right;font-size:.64rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:6px 7px;border-bottom:2px solid var(--line);white-space:nowrap}
+thead th:first-child{text-align:left}
+tbody td{text-align:right;padding:5px 7px;border-bottom:1px solid var(--line);font-weight:600;white-space:nowrap}
+tbody td:first-child{text-align:left}
+tbody tr:nth-child(even){background:#f7f9fc}
+tbody td.pos,tbody td.neg{font-weight:800}
+tbody tr:last-child td{border-bottom:none}
+.tk{font-weight:800;font-size:.86rem}
+.tk-sub{display:none}
+.m-cell{display:none}
+.zero td{opacity:.55}
+.closed-badge{font-size:.6rem;font-weight:800;letter-spacing:.05em;border:1px solid var(--line);border-radius:5px;padding:1px 5px;margin-left:6px;vertical-align:2px;color:var(--muted);text-transform:uppercase}
+tfoot td{text-align:right;font-weight:800;padding:7px;border-top:2px solid var(--line);white-space:nowrap}
+tfoot td:first-child{text-align:left}
+.empty-msg{padding:16px;text-align:center;color:var(--muted);font-weight:700}
+.pos{color:var(--green)} .neg{color:var(--red)}
+@media (max-width:760px){
+  .broker{margin-top:10px;border-radius:10px}
+  .broker-head{padding:9px 11px 0}
+  .broker-logo-icon > svg{height:32px;width:32px}
+  .ibkr-badge{height:32px;width:32px;font-size:.8rem}
+  .broker-chevron-badge{width:15px;height:15px;right:-5px;bottom:-5px}
+  .broker-summary app-equity-cash-split,.broker-summary app-stat-grid{padding:7px 11px 1px}
+  .highlights{grid-template-columns:1fr;gap:5px;padding:8px 0 10px;margin:2px 11px 0}
+  .hl{padding:6px 8px}.hl li{font-size:.72rem}
+}

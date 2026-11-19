@@ -1,0 +1,5 @@
+<div class="split" aria-label="Equity and cash split">
+  <div class="lbls"><span>Equity {{ equityPct | portfolioFormat:'pct':2 }}</span><span>Cash {{ cashPct | portfolioFormat:'pct':2 }}</span></div>
+  <div class="splitbar"><div class="eq" [style.width.%]="equityPct"></div><div class="cash" [style.width.%]="cashPct"></div></div>
+  <div class="sub">Cash held: <span class="mono">{{ cash | portfolioFormat:'usd2' }}</span> · {{ contributedLabel }}: <span class="mono">{{ contributed | portfolioFormat:'usd2' }}</span></div>
+</div>

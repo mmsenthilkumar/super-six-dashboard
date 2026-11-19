@@ -1,0 +1,6 @@
+.combined-block{margin-top:0;background:var(--surface);border:none;border-radius:0;box-shadow:none;padding:13px 16px 14px}
+.combined-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px}
+.broker-tag{display:inline-block;font-size:.62rem;font-weight:800;letter-spacing:.11em;padding:3px 8px;border-radius:5px;text-transform:uppercase}
+.tag-both{background:var(--surface2);color:var(--ink);border:1px solid var(--ink)}
+.combined-sub{color:var(--muted);font-weight:700;font-size:.78rem}
+@media (max-width:760px){.combined-block{padding:9px 11px 10px}.combined-sub{font-size:.68rem}}

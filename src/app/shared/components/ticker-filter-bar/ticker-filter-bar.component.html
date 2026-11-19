@@ -1,0 +1,18 @@
+<div class="controls">
+  <div class="search-box">
+    <span class="chips">
+      @for (chip of chips; track chip) {
+        <span class="chip">{{ chip }}<button type="button" (click)="removeChip(chip)" [attr.aria-label]="'Remove ' + chip + ' filter'">×</button></span>
+      }
+    </span>
+    <input #q type="search" placeholder="Add multiple tickers…" [attr.aria-label]="'Add multiple ' + brokerLabel + ' tickers to filter by — type a ticker and press Enter, repeat to add more'"
+      (keydown.enter)="onEnter(q)" (keydown.comma)="onComma(q)" (keydown.backspace)="onBackspace(q)">
+  </div>
+  <select [value]="sort" (change)="onSort($any($event.target).value)" [attr.aria-label]="'Sort ' + brokerLabel + ' holdings'">
+    <option value="ticker">Sort: Ticker A–Z</option>
+    <option value="weight">Sort: Weight, largest first</option>
+    <option value="unreal">Sort: Unrealised P/L, best first</option>
+    <option value="unrealAsc">Sort: Unrealised P/L, worst first</option>
+    <option value="invested">Sort: Invested, largest first</option>
+  </select>
+</div>

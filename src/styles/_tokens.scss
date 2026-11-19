@@ -1,0 +1,9 @@
+/* Design tokens ported from the static prototype (super-six-cloudflare/index.html). */
+:root {
+  color-scheme: light;
+  --bg: #ffffff; --surface: #ffffff; --surface2: #eef2f7; --ink: #0f1622; --muted: #52637a;
+  --line: #d3dde8; --gold: #a86e0a; --gold-soft: #fdf3df; --green: #0c7a4b; --green-soft: #e2f4ea;
+  --teal: #0f766e; --teal-soft: #e0f2f1;
+  --red: #bc2f2f; --red-soft: #fbe7e7; --tiger: #0b5fa5; --tiger-soft: #eaf3fb; --ibkr: #7a4a12; --ibkr-soft: #fbf2df;
+  --bar-track: #dde5ef; --shadow: 0 1px 3px rgba(15, 22, 34, .06), 0 10px 28px rgba(15, 22, 34, .07);
+}

@@ -1,0 +1,18 @@
+<div class="stat-grid" [class.large]="large" [attr.aria-label]="ariaLabel">
+  @for (s of stats; track s.label) {
+    <div class="stat">
+      <div class="k">{{ s.label }}</div>
+      <div class="v mono" [class.pos]="s.valueClass === 'pos'" [class.neg]="s.valueClass === 'neg'">{{ s.value }}</div>
+      <div class="mini-bar" aria-hidden="true"><span [style.width.%]="s.barPct" [style.background]="s.barColor"></span></div>
+      <div class="mini-spark" aria-hidden="true">
+        @for (h of (s.spark ?? [45, 60, 80, 100]); track $index) {
+          <i [style.height.%]="h" [style.background]="s.barColor" [style.opacity]="0.5 + $index * 0.17"></i>
+        }
+      </div>
+      @if (s.graphLabel) {
+        <span class="g-lbl" [class.pos]="s.graphLabelClass === 'pos'" [class.neg]="s.graphLabelClass === 'neg'">{{ s.graphLabel }}</span>
+      }
+      <div class="s" [class.pos]="s.subClass === 'pos'" [class.neg]="s.subClass === 'neg'">{{ s.sub }}</div>
+    </div>
+  }
+</div>

@@ -19,7 +19,7 @@
     }
   </div>
   <footer>{{ dataSvc.data().snapshotLabel }} · USD
-    @if (dataSvc.source() === 'live') { <span>· Live from sheet</span> }
+    @if (dataSvc.source() === 'live' && dataSvc.lastUpdated()) { <span>· Live Data as on {{ dataSvc.lastUpdated() | date:'d MMM y, h:mm a' }}</span> }
     @if (dataSvc.source() === 'live-fallback') { <span>· Live failed, showing saved snapshot</span> }
   </footer>
 </div>

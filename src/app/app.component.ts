@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { ChallengeHeroComponent } from './features/challenge-hero/challenge-hero.component';
 import { BrokerTabsComponent } from './features/broker-tabs/broker-tabs.component';
 import { CombinedOverviewComponent } from './features/combined-overview/combined-overview.component';
@@ -14,7 +15,7 @@ import { UiPreferencesService } from './core/services/ui-preferences.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ChallengeHeroComponent, BrokerTabsComponent, CombinedOverviewComponent, BrokerSectionComponent],
+  imports: [ChallengeHeroComponent, BrokerTabsComponent, CombinedOverviewComponent, BrokerSectionComponent, DatePipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

@@ -12,7 +12,8 @@
 .refresh-btn:active{transform:rotate(40deg)}
 .refresh-btn svg{width:16px;height:16px;display:block}
 .hero-top > div:first-child{flex:1 1 420px;min-width:0}
-.group-name{font-size:.58rem;font-weight:800;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.group-name{display:flex;align-items:center;gap:7px;font-size:.58rem;font-weight:800;letter-spacing:.12em;color:var(--gold);text-transform:uppercase}
+.group-icon{width:26px;height:26px;border-radius:7px;flex:none}
 h1{margin:1px 0;font-size:clamp(.84rem,2vw,1.12rem);line-height:1.1;font-weight:800;letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 h1 .gold{color:var(--gold)}
 .hero-sub{color:var(--muted);font-weight:600;font-size:.7rem;display:inline}

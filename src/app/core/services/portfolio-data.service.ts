@@ -21,13 +21,15 @@ export const APPS_SCRIPT_DATA_URL = 'https://script.google.com/macros/s/AKfycbzj
 export const AUTO_REFRESH_MS = 15 * 60 * 1000;
 
 /**
- * App version, shown in the footer (e.g. "v1.0.1") so it is visible which
+ * App version, shown in the footer (e.g. "v1.0.2") so it is visible which
  * build is running. Bump on each release: 1.0.0 was the first Angular
- * deploy (19 Nov 2026), 1.0.1 is the smart-refresh release. The update
- * check itself still compares the main-*.js hash — that is automatic and
- * cannot be forgotten; the version number is for humans to track.
+ * deploy (19 Nov 2026), 1.0.1 the smart-refresh release, 1.0.2 the app
+ * icon in the page (the page itself stays "Super Six"; S6D is the Android
+ * app's name). The update check itself still compares the main-*.js hash
+ * — that is automatic and cannot be forgotten; the version number is for
+ * humans to track.
  */
-export const APP_VERSION = '1.0.1';
+export const APP_VERSION = '1.0.2';
 
 export type DataSource = 'static' | 'live' | 'live-fallback';
 

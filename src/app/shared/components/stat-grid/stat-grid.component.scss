@@ -15,12 +15,16 @@
 .stat .g-lbl{display:none;font-size:.56rem;font-weight:700;color:var(--muted);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pos{color:var(--green)} .neg{color:var(--red)}
 @media (max-width:760px){
-  .stat-grid{grid-template-columns:repeat(4,1fr);gap:3px;margin-top:4px}
-  .stat-grid .stat{padding:3px 4px;border-radius:5px}
-  .stat-grid .stat .k{font-size:.44rem;letter-spacing:.03em}
-  .stat-grid .stat .v{font-size:.66rem}
-  .stat-grid .stat .s{display:none}
-  .stat-grid .mini-bar{height:2px;margin-top:2px}
-  .stat-grid .mini-spark{height:7px;margin-top:2px;gap:1px}
-  .stat-grid .stat .g-lbl{display:block;font-size:.48rem;margin-top:1px}
+  /* 4-across on a phone squeezed every box: labels ellipsised ("COMBI…")
+     and values clipped ("$141,6"). 2-across gives each box room to show
+     its full label and value. Applies to the Combined overview and to the
+     per-broker 4-box strips, which share this component. */
+  .stat-grid{grid-template-columns:repeat(2,1fr);gap:6px;margin-top:4px}
+  .stat-grid .stat{padding:7px 9px;border-radius:7px}
+  .stat-grid .stat .k{font-size:.56rem;letter-spacing:.05em;white-space:normal}
+  .stat-grid .stat .v{font-size:.95rem;white-space:normal}
+  .stat-grid .stat .s{display:block;font-size:.62rem;margin-top:2px;white-space:normal}
+  .stat-grid .mini-bar{height:3px;margin-top:3px}
+  .stat-grid .mini-spark{height:9px;margin-top:3px;gap:2px}
+  .stat-grid .stat .g-lbl{display:block;font-size:.56rem;margin-top:2px;white-space:normal}
 }

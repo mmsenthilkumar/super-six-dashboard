@@ -28,13 +28,14 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * closed positions removed from the list itself, 1.0.6 hardcoded
  * snapshot dropped, empty page on refresh failure, 1.0.7 redeployed
  * Apps Script URL + weight normalisation (see below), 1.0.8 branded
- * intro/loading page (logo, S6D, animated ring + dots). The update check
+ * intro/loading page (logo, S6D, animated ring + dots), 1.0.9 phone
+ * cards neutral (gain/loss tint removed). The update check
  * itself still compares the main-*.js
  * hash — that is automatic and cannot be forgotten; the version number
  * is for humans to track. (The page itself stays "Super Six"; S6D is
  * the Android app's name.)
  */
-export const APP_VERSION = '1.0.8';
+export const APP_VERSION = '1.0.9';
 
 export type DataSource = 'loading' | 'live' | 'error';
 

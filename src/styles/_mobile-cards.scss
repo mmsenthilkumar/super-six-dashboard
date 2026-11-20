@@ -4,8 +4,13 @@
   table, tbody { display: block; width: 100%; }
   thead { display: none; }
   tbody tr { display: flex; align-items: center; justify-content: space-between; gap: 8px; border: 1px solid var(--line); border-radius: 7px; margin-bottom: 3px; padding: 4px 8px; background: var(--surface2); min-height: 38px; }
-  tbody tr.gain { background: #eef6f1; border-color: #c6dfcf; }
-  tbody tr.loss { background: #fbf0f0; border-color: #eacbcb; }
+  /* NEUTRAL for now (20 Nov 2026, Senthil's call): gain/loss cards used
+     to be tinted light green / light red, which read as if the whole
+     position were good or bad — misleading when e.g. IBKR is mostly small
+     unrealised losses. All cards share the flat neutral background now;
+     the P/L figure itself still reads green/red (text + pill). */
+  tbody tr.gain { background: var(--surface2); border-color: var(--line); }
+  tbody tr.loss { background: var(--surface2); border-color: var(--line); }
   tbody tr.flat { background: var(--surface2); }
   tbody tr.zero { background: #f4f6f9; }
   tbody td { display: none; }

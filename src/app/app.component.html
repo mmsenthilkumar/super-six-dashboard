@@ -30,13 +30,18 @@
       <span> · v{{ appVersion }}</span>
     </footer>
   } @else {
-    <div class="empty-state" role="status">
+    <div class="intro" role="status">
+      <div class="intro-logo">
+        <img [src]="appIcon" alt="S6D app icon" width="76" height="76">
+        <span class="intro-ring" aria-hidden="true"></span>
+      </div>
+      <div class="intro-name">S6D</div>
+      <div class="intro-sub">Super Six Investment Portfolio</div>
       @if (dataSvc.loading()) {
-        <p class="empty-title">Loading live data…</p>
-        <p>Fetching the latest holdings from the sheet.</p>
+        <p class="intro-line">Fetching the latest data from the Markets<span class="dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></p>
       } @else {
-        <p class="empty-title">Couldn't load the holdings.</p>
-        <p>The live data didn't come through — nothing is shown rather than old numbers.</p>
+        <p class="intro-title">Couldn't load the holdings.</p>
+        <p class="intro-line">The live data didn't come through — nothing is shown rather than old numbers.</p>
         <button type="button" class="retry-btn" (click)="dataSvc.refresh()">Try again</button>
       }
     </div>

@@ -6,6 +6,7 @@ import { CombinedOverviewComponent } from './features/combined-overview/combined
 import { BrokerSectionComponent } from './features/broker-section/broker-section.component';
 import { APP_VERSION, PortfolioDataService } from './core/services/portfolio-data.service';
 import { UiPreferencesService } from './core/services/ui-preferences.service';
+import { APP_ICON_DATA_URI } from './shared/app-icon';
 
 /**
  * Top-level shell: hero + tabs + footer.
@@ -24,6 +25,7 @@ export class AppComponent implements OnInit, OnDestroy {
   protected dataSvc = inject(PortfolioDataService);
   protected prefs = inject(UiPreferencesService);
   protected appVersion = APP_VERSION;
+  protected appIcon = APP_ICON_DATA_URI;
 
   /** Pull-to-refresh state: distance pulled (px) + phase. Same smart refresh
    *  as the refresh button — re-fetches sheet data, reloads only if a new

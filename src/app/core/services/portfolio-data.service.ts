@@ -27,13 +27,14 @@ export const AUTO_REFRESH_MS = 15 * 60 * 1000;
  * push declined) show % P/L in ticker rows, 1.0.5 same % P/L change +
  * closed positions removed from the list itself, 1.0.6 hardcoded
  * snapshot dropped, empty page on refresh failure, 1.0.7 redeployed
- * Apps Script URL + weight normalisation (see below). The update check
+ * Apps Script URL + weight normalisation (see below), 1.0.8 branded
+ * intro/loading page (logo, S6D, animated ring + dots). The update check
  * itself still compares the main-*.js
  * hash — that is automatic and cannot be forgotten; the version number
  * is for humans to track. (The page itself stays "Super Six"; S6D is
  * the Android app's name.)
  */
-export const APP_VERSION = '1.0.7';
+export const APP_VERSION = '1.0.8';
 
 export type DataSource = 'loading' | 'live' | 'error';
 

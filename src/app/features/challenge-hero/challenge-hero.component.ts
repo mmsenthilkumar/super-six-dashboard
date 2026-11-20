@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { InfoPopoverComponent } from '../../shared/components/info-popover/info-popover.component';
 import { PortfolioFormatPipe } from '../../shared/pipes/portfolio-format.pipe';
 import { UiPreferencesService } from '../../core/services/ui-preferences.service';
+import { APP_ICON_DATA_URI } from '../../shared/app-icon';
 import type { ChallengeMeta } from '../../core/models/portfolio.models';
 
 /** Header: group name, title, month chip, +/- text-size box + refresh, progress bar, milestone strip. */
@@ -16,6 +17,7 @@ export class ChallengeHeroComponent {
   @Input({ required: true }) challenge!: ChallengeMeta;
   @Output() refresh = new EventEmitter<void>();
   protected prefs = inject(UiPreferencesService);
+  protected appIcon = APP_ICON_DATA_URI;
 
   /** Milestone posts on the straight-line graph (value in USD → position
    *  along the line, %). Hand-placed: $0 at 2.5%, then 100k/250k/500k/1M. */
